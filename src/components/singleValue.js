@@ -13,5 +13,5 @@ class SingleValueComponent extends Component {
   }
 }
 
+export class Player extends SingleValueComponent {}
 export class Sprite extends SingleValueComponent {}
-export class Velocity extends SingleValueComponent {}

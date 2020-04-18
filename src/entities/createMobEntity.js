@@ -4,6 +4,7 @@ import { DIRECTION, DIRECTION_LIST} from '../consts/direction';
 import { Mob } from '../components/Mob';
 import { pixi } from '../singletons/pixi';
 import { Sprite } from '../components/singleValue';
+import { Velocity } from '../components/Velocity';
 import { world } from '../singletons/world';
 
 
@@ -21,6 +22,7 @@ export function createMobEntity(name) {
       animations,
       direction: DIRECTION.SOUTH,
     })
+    .addComponent(Velocity)
 
   return mob;
 }

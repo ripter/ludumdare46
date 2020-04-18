@@ -1,10 +1,11 @@
 import * as PIXI from 'pixi.js';
 
-import { createMobEntity } from './utils/createMobEntity';
+import { createMobEntity } from './entities/createMobEntity';
 import { loadTiledMap } from './utils/loadTiledMap';
 import { pixi } from './singletons/pixi';
 import { sliceTexture } from './utils/sliceTexture';
-import { Sprite } from './components/singleValue';
+import { Sprite, Velocity, Player } from './components/singleValue';
+import { world } from './singletons/world';
 
 export function startGame() {
   const { resources } = pixi.loader;
@@ -15,11 +16,19 @@ export function startGame() {
   pixi.stage.addChild(map);
 
   // Create the Player Mob
-  const player = createMobEntity('bald_beard');
+  const player = createMobEntity('bald_beard')
+    .addComponent(Player, {});
   const playerSprite = player.getComponent(Sprite).value;
   console.log('player', player, 'sprite', playerSprite);
   playerSprite.position.set(100, 100);
   playerSprite.play();
   pixi.stage.addChild(playerSprite);
 
+
+
+  // Start the Game loop.
+  // Use Pixi's ticker for the game loop.
+  pixi.ticker.add(delta => {
+    world.execute(delta);
+  });
 }
