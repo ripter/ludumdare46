@@ -27,7 +27,6 @@ export function startGame() {
       resourceID: 'bald_beard',
       x: 100,
       y: 100,
-      // parent: pixi.stage,
       parent: worldMap,
     })
     .addComponent(Player, {});
