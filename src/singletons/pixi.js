@@ -10,3 +10,7 @@ export const pixi = window.pixi = new PIXI.Application({
   width: VIEW_WIDTH,
   height: VIEW_HEIGHT,
 });
+
+// Remove the set size so we can scale with CSS
+window.elCanvas.removeAttribute('width');
+window.elCanvas.removeAttribute('height');

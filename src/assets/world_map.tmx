@@ -92,14 +92,16 @@
 </data>
  </layer>
  <objectgroup id="3" name="objects">
-  <object id="1" name="Joe" type="mob" x="240" y="80" width="16" height="16">
+  <object id="1" name="Kimchi" type="mob" x="240" y="80" width="16" height="16">
    <properties>
-    <property name="name" value="hard_hat"/>
+    <property name="AI" value="simple"/>
+    <property name="resourceID" value="hard_hat"/>
    </properties>
   </object>
-  <object id="2" type="mob" x="320" y="208" width="16" height="16">
+  <object id="2" name="Janet" type="mob" x="320" y="208" width="16" height="16">
    <properties>
-    <property name="name" value="girl_bow"/>
+    <property name="AI" value="simple"/>
+    <property name="resourceID" value="girl_bow"/>
    </properties>
   </object>
  </objectgroup>

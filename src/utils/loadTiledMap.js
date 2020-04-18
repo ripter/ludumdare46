@@ -4,7 +4,7 @@ import { createTiledSprite } from './createTiledSprite';
 import { createMobEntity } from '../entities/createMobEntity';
 import { mapTypes } from '../consts/mapTypes';
 import { createMapObject } from './createMapObject';
-import { Sprite } from '../components/singleValue';
+import { Sprite, AI } from '../components/singleValue';
 
 export function loadTiledMap(textures, mapData) {
   const map = new PIXI.Container();
@@ -34,17 +34,20 @@ export function loadTiledMap(textures, mapData) {
     else if (layer.type === 'objectgroup') {
       layer.objects.forEach(obj => {
         const mapObject = createMapObject(obj);
-        let entity;
-
         mapObject.parent = container;
+        const entity = createMobEntity(mapObject);
 
-        switch (obj.type) {
-          case mapTypes.mob:
-              entity = createMobEntity(mapObject);
-            break;
-          default:
-            console.log('unknown type', obj);
+        // console.log('mapObject', mapObject);
+        if (mapObject.AI) {
+          entity.addComponent(AI, {value: mapObject.AI});
         }
+
+        // switch (obj.type) {
+        //   case mapTypes.mob:
+        //     break;
+        //   default:
+        //     console.log('unknown type', obj);
+        // }
 
       });
     }

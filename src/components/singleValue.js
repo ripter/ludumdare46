@@ -15,3 +15,6 @@ class SingleValueComponent extends Component {
 
 export class Player extends SingleValueComponent {}
 export class Sprite extends SingleValueComponent {}
+export class AI extends SingleValueComponent {}
+export class Timeout extends SingleValueComponent {}
+export class WalkStep extends SingleValueComponent {}

@@ -9,6 +9,7 @@ export class Mob extends Component {
   reset() {
     this.animations.length = 0;
     this.direction = 0;
+    this.speed = 1;
   }
   set(obj) {
     this.speed = obj.speed;

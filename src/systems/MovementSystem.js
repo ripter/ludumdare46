@@ -5,9 +5,6 @@ import { Velocity } from '../components/Velocity';
 
 // Adds Velocity to Sprite position
 export class MovementSystem extends System {
-  init() {
-    console.log('MovementSystem loaded')
-  }
   execute(delta) {
     this.queries.mobs.results.forEach(entity => {
       const sprite = entity.getComponent(Sprite).value;

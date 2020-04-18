@@ -17,7 +17,8 @@ export function startGame() {
 
   // Create the Player Mob
   const player = createMobEntity({
-      name: 'bald_beard',
+      name: 'Chris',
+      resourceID: 'bald_beard',
       x: 100,
       y: 100,
       parent: pixi.stage,

@@ -54,10 +54,15 @@
                 {
                  "height":16,
                  "id":1,
-                 "name":"Joe",
+                 "name":"Kimchi",
                  "properties":[
                         {
-                         "name":"name",
+                         "name":"AI",
+                         "type":"string",
+                         "value":"simple"
+                        }, 
+                        {
+                         "name":"resourceID",
                          "type":"string",
                          "value":"hard_hat"
                         }],
@@ -71,10 +76,15 @@
                 {
                  "height":16,
                  "id":2,
-                 "name":"",
+                 "name":"Janet",
                  "properties":[
                         {
-                         "name":"name",
+                         "name":"AI",
+                         "type":"string",
+                         "value":"simple"
+                        }, 
+                        {
+                         "name":"resourceID",
                          "type":"string",
                          "value":"girl_bow"
                         }],
