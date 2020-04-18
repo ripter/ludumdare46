@@ -1,6 +1,10 @@
 import * as PIXI from 'pixi.js';
 
 import { createTiledSprite } from './createTiledSprite';
+import { createMobEntity } from '../entities/createMobEntity';
+import { mapTypes } from '../consts/mapTypes';
+import { createMapObject } from './createMapObject';
+import { Sprite } from '../components/singleValue';
 
 export function loadTiledMap(textures, mapData) {
   const map = new PIXI.Container();
@@ -16,7 +20,7 @@ export function loadTiledMap(textures, mapData) {
     const container = new PIXI.Container();
     container.name = layer.name;
 
-
+    // Tile Layers
     if (layer.type === 'tilelayer') {
       layer.data.forEach((tileID, index) => {
         const sprite = createTiledSprite(textures, tileID);
@@ -26,8 +30,23 @@ export function loadTiledMap(textures, mapData) {
         container.addChild(sprite);
       });
     }
+    // Object layers
     else if (layer.type === 'objectgroup') {
-      console.log('TODO: ADD THIS');
+      layer.objects.forEach(obj => {
+        const mapObject = createMapObject(obj);
+        let entity;
+
+        mapObject.parent = container;
+
+        switch (obj.type) {
+          case mapTypes.mob:
+              entity = createMobEntity(mapObject);
+            break;
+          default:
+            console.log('unknown type', obj);
+        }
+
+      });
     }
 
     map.addChild(container);

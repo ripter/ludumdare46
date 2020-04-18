@@ -16,15 +16,13 @@ export function startGame() {
   pixi.stage.addChild(map);
 
   // Create the Player Mob
-  const player = createMobEntity('bald_beard')
+  const player = createMobEntity({
+      name: 'bald_beard',
+      x: 100,
+      y: 100,
+      parent: pixi.stage,
+    })
     .addComponent(Player, {});
-  const playerSprite = player.getComponent(Sprite).value;
-  console.log('player', player, 'sprite', playerSprite);
-  playerSprite.position.set(100, 100);
-  // playerSprite.play();
-  pixi.stage.addChild(playerSprite);
-
-
 
   // Start the Game loop.
   // Use Pixi's ticker for the game loop.
