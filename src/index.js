@@ -1,17 +1,5 @@
-
-import {
-  World, System, Component, Not,
-} from 'ecsy';
-
+import { pixi } from './singletons/pixi';
 import { startGame } from './startGame';
-
-
-const PLAYER_SPEED = 0.15;
-
-
-// ECSY World
-const world = new World();
-
 
 // Load the resources and start the game.
 pixi.loader

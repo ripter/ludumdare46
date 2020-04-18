@@ -6,14 +6,12 @@ export function loadTiledMap(textures, mapData) {
   const map = new PIXI.Container();
   map.sortableChildren = true;
   map.name = 'tiledMap';
-  console.log('mapData', mapData);
   const tileWidth = map.tileWidth = mapData.tilewidth;
   const tileHeight = map.tileHeight = mapData.tileheight;
   const tileSet = mapData.tilesets.source;
 
   // Create a container for each layer
   mapData.layers.forEach(layer => {
-    console.log(layer);
     // Create a container for each layer.
     const container = new PIXI.Container();
     container.name = layer.name;
