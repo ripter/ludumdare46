@@ -21,7 +21,7 @@ export function startGame() {
   const playerSprite = player.getComponent(Sprite).value;
   console.log('player', player, 'sprite', playerSprite);
   playerSprite.position.set(100, 100);
-  playerSprite.play();
+  // playerSprite.play();
   pixi.stage.addChild(playerSprite);
 
 

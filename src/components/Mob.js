@@ -8,7 +8,6 @@ export class Mob extends Component {
   }
   reset() {
     this.animations.length = 0;
-    this.speed = 1;
     this.direction = 0;
   }
   set(obj) {

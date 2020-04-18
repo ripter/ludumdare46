@@ -11,7 +11,7 @@ import { world } from '../singletons/world';
 export function createMobEntity(name) {
   const { spritesheet } = pixi.loader.resources.mobs;
   const animations = DIRECTION_LIST.map(dir => spritesheet.animations[`${name}_${dir}`]);
-  const sprite = new PIXI.AnimatedSprite(animations[0]);
+  const sprite = new PIXI.AnimatedSprite(animations[DIRECTION.SOUTH]);
   sprite.animationSpeed = 0.15;
 
   const mob = world.createEntity()
