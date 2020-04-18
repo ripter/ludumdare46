@@ -1,0 +1,12 @@
+import * as PIXI from 'pixi.js';
+
+const VIEW_WIDTH = 320 * 2;
+const VIEW_HEIGHT = 200 * 2;
+
+export const pixi = window.pixi = new PIXI.Application({
+  // resolution: window.devicePixelRatio,
+  // autoDensity: true,
+  view: window.elCanvas,
+  width: VIEW_WIDTH,
+  height: VIEW_HEIGHT,
+});
