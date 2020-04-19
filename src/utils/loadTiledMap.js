@@ -1,8 +1,10 @@
 import * as PIXI from 'pixi.js';
 
 import { createTiledSprite } from './createTiledSprite';
+import { createStaticColliderEntity } from '../entities/createStaticColliderEntity';
 import { createMobEntity } from '../entities/createMobEntity';
 import { mapTypes } from '../consts/mapTypes';
+import { mapLayers } from '../consts/mapLayers';
 import { createMapObject } from './createMapObject';
 import { Sprite, AI } from '../components/singleValue';
 
@@ -37,18 +39,10 @@ export function loadTiledMap(textures, mapData) {
         mapObject.parent = container;
         const entity = createMobEntity(mapObject);
 
-        // console.log('mapObject', mapObject);
+        // Add extra components
         if (mapObject.AI) {
           entity.addComponent(AI, {value: mapObject.AI});
         }
-
-        // switch (obj.type) {
-        //   case mapTypes.mob:
-        //     break;
-        //   default:
-        //     console.log('unknown type', obj);
-        // }
-
       });
     }
 
