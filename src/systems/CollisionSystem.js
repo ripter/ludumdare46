@@ -3,7 +3,7 @@ import { System } from 'ecsy';
 import { Mob } from '../components/Mob';
 import { Velocity } from '../components/Velocity';
 import { Collider, Sprite, Player } from '../components/singleValue';
-import { intersect, spriteToBBox } from '../utils/intersect';
+import { intersect, spriteToBBox, spriteVelocityToBBox } from '../utils/intersect';
 
 export class CollisionSystem extends System {
   execute(delta) {
@@ -26,13 +26,15 @@ export class CollisionSystem extends System {
         const staticSprite = staticEntity.getComponent(Sprite).value;
 
         // Needs to be Sprite + Velocity
-        const intersection = intersect(spriteToBBox(sprite), spriteToBBox(staticSprite));
+        const aBox = spriteVelocityToBBox(sprite, velocity);
+        const bBox = spriteToBBox(staticSprite)
+        const intersection = intersect(aBox, bBox);
 
         if (intersection) {
-          console.log('isColliding', intersection, sprite, staticSprite)
-          velocity.x -= intersection.x;
-          velocity.y -= intersection.y;
-          // velocity.reset();
+          // console.log('isColliding', intersection, sprite, staticSprite)
+          // velocity.x -= intersection.x;
+          // velocity.y -= intersection.y;
+          velocity.reset();
         }
 
         // const staticRect = staticSprite.getBounds();
@@ -66,7 +68,7 @@ export class CollisionSystem extends System {
 }
 CollisionSystem.queries = {
   moving: {
-    components: [Velocity, Sprite, Player]
+    components: [Velocity, Sprite]
   },
   static: {
     components: [Collider]
