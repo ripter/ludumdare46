@@ -1,6 +1,9 @@
 import { world } from '../singletons/world';
-import { Sprite, AI, StaticCollider } from '../components/singleValue';
+import { Sprite, Collider } from '../components/singleValue';
 
-export function createStaticColliderEntity(x, y, tileWidth, tileHeight) {
-
+export function createStaticColliderEntity(sprite) {
+  console.log('sprite', sprite.width, sprite.height, sprite);
+  return world.createEntity()
+    .addComponent(Collider, {})
+    .addComponent(Sprite, {value: sprite})
 }

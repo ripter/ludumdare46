@@ -30,6 +30,11 @@ export function loadTiledMap(textures, mapData) {
         const y = (0 | index / layer.width) * tileHeight;
         sprite.position.set(x, y);
         container.addChild(sprite);
+
+        // If we are on the collision layer, and the tile isn't blank, add it to collision
+        if (layer.name === mapLayers.collision && sprite.data.tileID !== 0) {
+          createStaticColliderEntity(sprite);
+        }
       });
     }
     // Object layers
@@ -39,7 +44,8 @@ export function loadTiledMap(textures, mapData) {
         mapObject.parent = container;
         const entity = createMobEntity(mapObject);
 
-        // Add extra components
+        //
+        // Add Components defiend in the map data
         if (mapObject.AI) {
           entity.addComponent(AI, {value: mapObject.AI});
         }
