@@ -3,4 +3,5 @@
 export const mapTypes = {
   mob: 'mob',
   text: 'text',
+  sprite: 'sprite',
 }

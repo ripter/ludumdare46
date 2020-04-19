@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="13" height="5" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="4">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="13" height="5" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6">
  <editorsettings>
   <export target="../../public/assets/dialog_choices.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="ui_spritesheet.tsx"/>
  <layer id="1" name="background" width="13" height="5">
   <data encoding="csv">
-21,11,12,12,12,13,0,0,11,12,12,12,13,
+0,11,12,12,12,13,0,0,11,12,12,12,13,
 0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -14,12 +14,26 @@
 </data>
  </layer>
  <objectgroup id="2" name="objects">
-  <object id="1" name="indicator" type="cursor" x="0" y="0" width="16" height="16"/>
+  <object id="1" name="indicator" type="sprite" x="0" y="48" width="16" height="16">
+   <properties>
+    <property name="tiledID" value="20"/>
+   </properties>
+  </object>
   <object id="2" name="secondaryChoice" type="text" x="20" y="0" width="80" height="16">
    <text pixelsize="10" wrap="1">Close</text>
   </object>
   <object id="3" name="primaryChoice" type="text" x="132" y="0" width="80" height="16">
    <text pixelsize="10" wrap="1">Continue</text>
+  </object>
+  <object id="4" name="slot 0" type="rect" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="slot" value="0"/>
+   </properties>
+  </object>
+  <object id="5" name="slot 1" type="rect" x="112" y="0" width="16" height="16">
+   <properties>
+    <property name="slot" value="1"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

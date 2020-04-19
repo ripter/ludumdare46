@@ -3,6 +3,7 @@ import * as PIXI from 'pixi.js';
 import { createColliderEntity } from '../entities/createColliderEntity';
 import { createMapObject } from './createMapObject';
 import { createMobEntity } from '../entities/createMobEntity';
+import { createSpriteEntity } from '../entities/createSpriteEntity';
 import { createTextEntity } from '../entities/createTextEntity';
 import { createTiledSprite } from './createTiledSprite';
 import { mapLayers } from '../consts/mapLayers';
@@ -47,10 +48,16 @@ export function loadTiledMap(textures, mapData) {
 
         if (obj.type === mapTypes.mob) {
           entity = createMobEntity(mapObject);
-
         }
         else if (obj.type === mapTypes.text) {
           entity = createTextEntity(mapObject);
+        }
+        else if (obj.type === mapTypes.sprite) {
+          entity = createSpriteEntity(textures, mapObject);
+          console.log('sprite entity', entity.getComponent(Sprite).value)
+          // console.log('Sprite object entity', mapObject);
+          // entity = world.createEntity()
+          //   .addComponent(Sprite, {value: createTiledSprite(textures, mapObject.tiledID)})
         }
 
         //
