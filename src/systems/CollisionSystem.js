@@ -7,32 +7,34 @@ import { intersect, spriteToBBox, spriteVelocityToBBox } from '../utils/intersec
 
 export class CollisionSystem extends System {
   execute(delta) {
-    const staticTiles = this.queries.static.results;
-    const movingObjects = this.queries.moving.results;
+    const collidables = this.queries.collidables.results;
 
-    this.queries.moving.results.forEach(entity => {
-      const sprite = entity.getComponent(Sprite).value;
-      const velocity = entity.getComponent(Velocity);
+    // If Velocity would cause a collision, reset Velocity on the collider.
+    this.queries.colliders.results.forEach(collider => {
+      collidables.forEach(collidable => {
+        if (collider === collidable) { return; }
+        const isColliding = doesIntersect(collider, collidable);
 
-      staticTiles.forEach(staticEntity => {
-        const staticSprite = staticEntity.getComponent(Sprite).value;
-
-        const aBox = spriteVelocityToBBox(sprite, velocity);
-        const bBox = spriteToBBox(staticSprite)
-        const intersection = intersect(aBox, bBox);
-
-        if (intersection) {
-          velocity.reset();
+        if (isColliding) {
+          collider.getMutableComponent(Velocity).reset();
         }
       });
     });
   }
 }
 CollisionSystem.queries = {
-  moving: {
-    components: [Velocity, Sprite]
+  colliders: {
+    components: [Collider, Velocity],
   },
-  static: {
-    components: [Collider]
+  collidables: {
+    components: [Collider],
   }
+}
+
+
+// AABB Collision detection
+function doesIntersect(collider, collidable) {
+  const aBox = spriteVelocityToBBox(collider.getComponent(Sprite).value, collider.getComponent(Velocity));
+  const bBox = spriteToBBox(collidable.getComponent(Sprite).value);
+  return intersect(aBox, bBox);
 }

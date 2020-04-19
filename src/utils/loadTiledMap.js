@@ -1,11 +1,11 @@
 import * as PIXI from 'pixi.js';
 
-import { createTiledSprite } from './createTiledSprite';
-import { createStaticColliderEntity } from '../entities/createStaticColliderEntity';
-import { createMobEntity } from '../entities/createMobEntity';
-import { mapTypes } from '../consts/mapTypes';
-import { mapLayers } from '../consts/mapLayers';
+import { createColliderEntity } from '../entities/createColliderEntity';
 import { createMapObject } from './createMapObject';
+import { createMobEntity } from '../entities/createMobEntity';
+import { createTiledSprite } from './createTiledSprite';
+import { mapLayers } from '../consts/mapLayers';
+import { mapTypes } from '../consts/mapTypes';
 import { Sprite, AI } from '../components/singleValue';
 
 export function loadTiledMap(textures, mapData) {
@@ -33,7 +33,7 @@ export function loadTiledMap(textures, mapData) {
 
         // If we are on the collision layer, and the tile isn't blank, add it to collision
         if (layer.name === mapLayers.collision && sprite.data.tileID !== 0) {
-          createStaticColliderEntity(sprite);
+          createColliderEntity(sprite);
         }
       });
     }
