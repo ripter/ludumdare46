@@ -14,7 +14,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="objects">
-  <object id="1" name="indicator" x="0" y="0" width="16" height="16"/>
+  <object id="1" name="indicator" type="cursor" x="0" y="0" width="16" height="16"/>
   <object id="2" name="secondaryChoice" type="text" x="20" y="0" width="80" height="16">
    <text pixelsize="10" wrap="1">Close</text>
   </object>

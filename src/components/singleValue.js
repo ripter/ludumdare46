@@ -1,5 +1,6 @@
 import { Component } from 'ecsy';
 
+// helper class. Create a component with a `.value` property.
 class SingleValueComponent extends Component {
   constructor() {
     super();
@@ -20,3 +21,6 @@ export class Timeout extends SingleValueComponent {}
 export class Collider extends SingleValueComponent {}
 export class Text extends SingleValueComponent {}
 export class Dialog extends SingleValueComponent {}
+export class Focus extends SingleValueComponent {}
+export class FollowPlayer extends SingleValueComponent {}
+export class Cursor extends SingleValueComponent {}

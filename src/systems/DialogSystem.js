@@ -9,11 +9,11 @@ export class DialogSystem  extends System {
 
     this.queries.openWindows.added.forEach(entity => {
       console.log('Dialog Added')
-      dialogMap.visible = true;
+      // dialogMap.visible = true;
     });
     this.queries.openWindows.removed.forEach(entity => {
       console.log('Dialog removed');
-      dialogMap.visible = false;
+      // dialogMap.visible = false;
     });
     this.queries.openWindows.results.forEach(entity => {
       // console.log('OPen dialog')

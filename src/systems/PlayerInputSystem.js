@@ -2,67 +2,76 @@ import { System } from 'ecsy';
 
 import { Player, Dialog } from '../components/singleValue';
 import { Velocity } from '../components/Velocity';
+import { Input } from '../components/Input';
 
 // Sets Velocity to the Player based on input.
 export class PlayerInputSystem extends System {
   init() {
-    this.velocity = {
-      x: 0,
-      y: 0,
-    };
+    this.inputState = null;
     document.addEventListener('keydown', this);
     document.addEventListener('keyup', this);
   }
 
   execute(delta) {
-    const players = this.queries.players.results;
-    if (players.length === 0) { return; }
-    const player = players[0];
-    const velocity = player.getMutableComponent(Velocity);
-    velocity.set(this.velocity);
+    this.queries.input.added.forEach(entity => {
+      this.inputState = entity.getComponent(Input);
+    });
+    // const players = this.queries.players.results;
+    // if (players.length === 0) { return; }
+    // const player = players[0];
+    // const velocity = player.getMutableComponent(Velocity);
+    // velocity.set(this.velocity);
   }
 
   handleEvent(event) {
-    const players = this.queries.players.results;
-    if (players.length === 0) { return; }
-    const player = players[0];
+    // Skip if we have no place to store the data.
+    if (!this.inputState) { return; }
 
     const {velocity} = this;
     switch (event.code) {
       case 'KeyD':
       case 'ArrowRight':
-        velocity.x = (event.type === 'keydown') ? 1 : 0;
+        this.inputState.MoveRight = (event.type === 'keydown') ? true : false;
         break;
       case 'KeyA':
       case 'ArrowLeft':
-        velocity.x = (event.type === 'keydown') ? -1 : 0;
+        this.inputState.MoveLeft = (event.type === 'keydown') ? true : false;
         break;
       case 'KeyW':
       case 'ArrowUp':
-        velocity.y = (event.type === 'keydown') ? -1 : 0;
+        this.inputState.MoveUp = (event.type === 'keydown') ? true : false;
         break;
       case 'KeyS':
       case 'ArrowDown':
-        velocity.y = (event.type === 'keydown') ? 1 : 0;
+        this.inputState.MoveDown = (event.type === 'keydown') ? true : false;
         break;
       case 'Escape':
-        if (event.type === 'keyup') {
-          if (player.hasComponent(Dialog)) {
-            player.removeComponent(Dialog);
-          }
-          else {
-            player.addComponent(Dialog, {value: 'menu'});
-          }
-        }
+        this.inputState.MainMenu = (event.type === 'keydown') ? true : false;
+        // if (event.type === 'keyup') {
+        //   if (player.hasComponent(Dialog)) {
+        //     player.removeComponent(Dialog);
+        //   }
+        //   else {
+        //     player.addComponent(Dialog, {value: 'menu'});
+        //   }
+        // }
         break;
       default:
         console.log('key code', event.code);
       // ignored keys
     }
+
+    // console.log('inputState', this.inputState);
   }
 }
 PlayerInputSystem.queries = {
   players: {
     components: [Player],
-  }
+  },
+  input: {
+    components: [Input],
+    listen: {
+      added: true,
+    },
+  },
 }

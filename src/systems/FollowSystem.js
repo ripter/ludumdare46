@@ -1,23 +1,40 @@
 import { System } from 'ecsy';
 
-import { Follow } from '../components/Follow';
+import { FollowPlayer } from '../components/singleValue';
 import { Velocity } from '../components/Velocity';
-import { Sprite } from '../components/singleValue';
+import { Sprite, Player } from '../components/singleValue';
 
 export class FollowSystem extends System {
+  init() {
+    this.player = null; // Quick reference
+  }
   execute(delta) {
-    this.queries.followers.results.forEach(entity => {
+    const { followers, player } = this.queries;
+
+    // Save a handy reference to the player
+    if (player.added.length > 0) {
+      this.player = player.added[0];
+    }
+
+    followers.results.forEach(entity => {
       const sprite = entity.getComponent(Sprite).value;
-      const targetEntity = entity.getComponent(Follow).target;
-      const targetSprite = targetEntity.getComponent(Sprite).value;
+      const targetEntity = entity.getComponent(FollowPlayer).target;
+      const targetSprite = this.player.getComponent(Sprite).value;
 
       sprite.position.x = -targetSprite.position.x + (16 * 9);
       sprite.position.y = -targetSprite.position.y + (16 * 4);
     });
+
   }
 }
 FollowSystem.queries = {
   followers: {
-    components: [Follow]
+    components: [FollowPlayer],
+  },
+  player: {
+    components: [Player],
+    listen: {
+      added: true,
+    },
   },
 }

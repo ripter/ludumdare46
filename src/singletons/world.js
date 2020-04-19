@@ -10,10 +10,17 @@ import { TimeoutSystem } from '../systems/TimeoutSystem';
 import { FollowSystem } from '../systems/FollowSystem';
 import { CollisionSystem } from '../systems/CollisionSystem';
 import { DialogSystem } from '../systems/DialogSystem';
+import { WindowSystem } from '../systems/WindowSystem';
+import { MapInputSystem } from '../systems/MapInputSystem';
+import { DialogInputSystem } from '../systems/DialogInputSystem';
 
 // ECSY World
+// Register all the systems in order.
 export const world = window.world = new World()
-  .registerSystem(DialogSystem)
+  // .registerSystem(DialogSystem)
+  .registerSystem(WindowSystem)
+  .registerSystem(DialogInputSystem)
+  .registerSystem(MapInputSystem)
   .registerSystem(AISystem)
   .registerSystem(PlayerInputSystem)
   .registerSystem(CollisionSystem)
