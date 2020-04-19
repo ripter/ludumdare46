@@ -5,7 +5,7 @@ import { Follow } from './components/Follow';
 import { loadTiledMap } from './utils/loadTiledMap';
 import { pixi } from './singletons/pixi';
 import { sliceTexture } from './utils/sliceTexture';
-import { Sprite, Player } from './components/singleValue';
+import { Sprite, Player, Dialog } from './components/singleValue';
 import { Velocity } from './components/Velocity';
 import { world } from './singletons/world';
 
@@ -15,6 +15,7 @@ export function startGame() {
   // Load the World Map
   const tileSet = sliceTexture(resources.city_spritesheet.texture, {width: 16, height: 16}, {x: 1, y: 1});
   const map = loadTiledMap(tileSet, resources.world_map.data);
+  map.name = 'worldMap';
 
   // Create a Camera/View that can scroll around the world map.
   const worldMap = new PIXI.Container();
@@ -24,6 +25,7 @@ export function startGame() {
 
   const uiSet = sliceTexture(resources.ui.texture, {width: 16, height: 16}, {x: 0, y: 0});
   const uiMap = loadTiledMap(uiSet, resources.ui_map.data);
+  uiMap.name = 'dialogMap';
   pixi.stage.addChild(uiMap);
 
 
@@ -35,7 +37,8 @@ export function startGame() {
       y: 100,
       parent: worldMap,
     })
-    .addComponent(Player, {});
+    .addComponent(Player, {})
+    .addComponent(Dialog, {value: 'menu'})
 
 
   world.createEntity()

@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"dialog_window.json"
+        }
+    },
  "height":5,
  "infinite":false,
  "layers":[
@@ -20,18 +28,18 @@
          "name":"objects",
          "objects":[
                 {
-                 "height":18.84375,
+                 "height":48,
                  "id":1,
                  "name":"message_body",
                  "rotation":0,
                  "text":
                     {
-                     "text":"Hello World",
+                     "text":"LD46: Keep it alive\nBy @ripter001",
                      "wrap":true
                     },
                  "type":"text",
                  "visible":true,
-                 "width":89.546875,
+                 "width":176,
                  "x":16,
                  "y":16
                 }],

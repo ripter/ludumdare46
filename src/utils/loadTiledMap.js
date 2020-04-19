@@ -13,8 +13,6 @@ import { Sprite, AI } from '../components/singleValue';
 export function loadTiledMap(textures, mapData) {
   const map = new PIXI.Container();
   map.sortableChildren = true;
-  // map.name = 'tiledMap';
-  console.log('mapData', mapData);
   const tileWidth = map.tileWidth = mapData.tilewidth;
   const tileHeight = map.tileHeight = mapData.tileheight;
   const tileSet = mapData.tilesets.source;

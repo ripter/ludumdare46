@@ -19,3 +19,4 @@ export class AI extends SingleValueComponent {}
 export class Timeout extends SingleValueComponent {}
 export class Collider extends SingleValueComponent {}
 export class Text extends SingleValueComponent {}
+export class Dialog extends SingleValueComponent {}
