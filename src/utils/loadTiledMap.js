@@ -3,15 +3,18 @@ import * as PIXI from 'pixi.js';
 import { createColliderEntity } from '../entities/createColliderEntity';
 import { createMapObject } from './createMapObject';
 import { createMobEntity } from '../entities/createMobEntity';
+import { createTextEntity } from '../entities/createTextEntity';
 import { createTiledSprite } from './createTiledSprite';
 import { mapLayers } from '../consts/mapLayers';
 import { mapTypes } from '../consts/mapTypes';
 import { Sprite, AI } from '../components/singleValue';
 
+// Returns a PIXI.Container with all the sprites and objects loaded from the Tiled Map
 export function loadTiledMap(textures, mapData) {
   const map = new PIXI.Container();
   map.sortableChildren = true;
-  map.name = 'tiledMap';
+  // map.name = 'tiledMap';
+  console.log('mapData', mapData);
   const tileWidth = map.tileWidth = mapData.tilewidth;
   const tileHeight = map.tileHeight = mapData.tileheight;
   const tileSet = mapData.tilesets.source;
@@ -42,7 +45,15 @@ export function loadTiledMap(textures, mapData) {
       layer.objects.forEach(obj => {
         const mapObject = createMapObject(obj);
         mapObject.parent = container;
-        const entity = createMobEntity(mapObject);
+        let entity;
+
+        if (obj.type === mapTypes.mob) {
+          entity = createMobEntity(mapObject);
+
+        }
+        else if (obj.type === mapTypes.text) {
+          entity = createTextEntity(mapObject);
+        }
 
         //
         // Add Components defiend in the map data

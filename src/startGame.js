@@ -12,7 +12,7 @@ import { world } from './singletons/world';
 export function startGame() {
   const { resources } = pixi.loader;
 
-  // Load the Map
+  // Load the World Map
   const tileSet = sliceTexture(resources.city_spritesheet.texture, {width: 16, height: 16}, {x: 1, y: 1});
   const map = loadTiledMap(tileSet, resources.world_map.data);
 
@@ -20,6 +20,12 @@ export function startGame() {
   const worldMap = new PIXI.Container();
   worldMap.addChild(map);
   pixi.stage.addChild(worldMap);
+
+
+  const uiSet = sliceTexture(resources.ui.texture, {width: 16, height: 16}, {x: 0, y: 0});
+  const uiMap = loadTiledMap(uiSet, resources.ui_map.data);
+  pixi.stage.addChild(uiMap);
+
 
   // Create the Player Mob
   const player = createMobEntity({
