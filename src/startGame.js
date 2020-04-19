@@ -23,10 +23,16 @@ export function startGame() {
   pixi.stage.addChild(worldMap);
 
 
+  // UI Dialog Window
   const uiSet = sliceTexture(resources.ui.texture, {width: 16, height: 16}, {x: 0, y: 0});
   const uiMap = loadTiledMap(uiSet, resources.ui_map.data);
   uiMap.name = 'dialogMap';
   pixi.stage.addChild(uiMap);
+
+  const uiChoicesMap = loadTiledMap(uiSet, resources.ui_choices_map.data);
+  uiChoicesMap.name = 'choicesMap';
+  uiChoicesMap.position.set(16 * 0.5, 16 * 5.5);
+  pixi.stage.addChild(uiChoicesMap);
 
 
   // Create the Player Mob

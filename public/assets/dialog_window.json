@@ -28,20 +28,21 @@
          "name":"objects",
          "objects":[
                 {
-                 "height":48,
+                 "height":65,
                  "id":1,
                  "name":"message_body",
                  "rotation":0,
                  "text":
                     {
-                     "text":"LD46: Keep it alive\nBy @ripter001",
+                     "pixelsize":10,
+                     "text":"LD46: Keep it alive\nBy @ripter001\nInspired by Earthbound.\nUse WASD\/Arrow keys to move.\nBump to interact, Esc for Menu.",
                      "wrap":true
                     },
                  "type":"text",
                  "visible":true,
-                 "width":176,
-                 "x":16,
-                 "y":16
+                 "width":196,
+                 "x":6,
+                 "y":7
                 }],
          "opacity":1,
          "type":"objectgroup",
