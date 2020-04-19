@@ -25,10 +25,10 @@ export class AnimationSystem extends System {
 
       // if the player is moving
       if (isMoving && !sprite.playing) {
-        sprite.play();
+        sprite.gotoAndPlay(0);
       }
       else if (!isMoving && sprite.playing) {
-        sprite.stop();
+        sprite.gotoAndStop(0);
       }
     });
   }
