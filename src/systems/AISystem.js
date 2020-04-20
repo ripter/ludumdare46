@@ -5,6 +5,7 @@ import { DIRECTION_LIST } from '../consts/direction';
 import { Mob } from '../components/Mob';
 import { Velocity } from '../components/Velocity';
 import { AI, Timeout } from '../components/singleValue';
+import { Dialog } from '../components/Dialog';
 import { velocityFromDirection } from '../utils/velocityFromDirection';
 
 
@@ -36,9 +37,15 @@ export class AISystem extends System {
   execute() {
     this.queries.npcs.results.forEach((entity) => {
       const { speed } = entity.getComponent(Mob);
+      const isTalking = entity.hasComponent(Dialog);
       const ai = entity.getComponent(AI).value;
 
-      if (ai === AIType.simple) {
+      // Talking NPCs shouldn't move.
+      if (isTalking) {
+        entity.getMutableComponent(Velocity).set({ x: 0, y: 0 });
+      }
+      // Move based on AI type
+      else if (ai === AIType.simple) {
         simpleMove(entity);
       }
       else if (ai === AIType.crazySpin) {
@@ -48,6 +55,15 @@ export class AISystem extends System {
       entity.addComponent(Timeout, { value: speed * 13 });
     });
   }
+  // stop() {
+  //   // Cancel all NPCs movement. Otherwise they will keep moving when the player opens the menu.
+  //   this.queries.npcs.results.forEach((entity) => {
+  //     if (entity.hasComponent(Velocity)) {
+  //       console.log('stopping velocity on', entity);
+  //       entity.getMutableComponent(Velocity).set({x: 0, y: 0});
+  //     }
+  //   });
+  // }
 }
 AISystem.queries = {
   npcs: {

@@ -1,6 +1,8 @@
 import * as PIXI from 'pixi.js';
 
-import { AI, Cursor, Slot, HasDialog } from '../components/singleValue';
+import {
+  AI, Cursor, Slot, HasDialog,
+} from '../components/singleValue';
 import { createColliderEntity } from '../entities/createColliderEntity';
 import { createMapObject } from './createMapObject';
 import { createMobEntity } from '../entities/createMobEntity';
@@ -71,7 +73,7 @@ export function loadTiledMap(textures, mapData) {
           entity.addComponent(Cursor, { value: mapObject.cursor });
         }
         if (mapObject.hasDialog) {
-          entity.addComponent(HasDialog, {value: mapObject.hasDialog})
+          entity.addComponent(HasDialog, { value: mapObject.hasDialog });
         }
       });
     }
