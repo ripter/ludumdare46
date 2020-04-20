@@ -10,7 +10,7 @@ pixi.loader
   .add('city_spritesheet', 'assets/city_spritesheet.png')
   .add('ui_map', 'assets/dialog_window.json')
   .add('ui_choices_map', 'assets/dialog_choices.json')
-  .add('world_map', 'assets/world_map.json')
+  .add('world_map', 'assets/world.json')
   .add('dialog_menu', 'dialog/menu.json')
   .add('dialog_kimchi', 'dialog/kimchi.json')
   .add('dialog_janet', 'dialog/janet.json')

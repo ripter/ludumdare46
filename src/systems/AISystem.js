@@ -39,7 +39,6 @@ export class AISystem extends System {
       const { speed } = entity.getComponent(Mob);
       const isTalking = entity.hasComponent(Dialog);
       const ai = entity.getComponent(AI).value;
-
       // Talking NPCs shouldn't move.
       if (isTalking) {
         entity.getMutableComponent(Velocity).set({ x: 0, y: 0 });
@@ -55,15 +54,6 @@ export class AISystem extends System {
       entity.addComponent(Timeout, { value: speed * 13 });
     });
   }
-  // stop() {
-  //   // Cancel all NPCs movement. Otherwise they will keep moving when the player opens the menu.
-  //   this.queries.npcs.results.forEach((entity) => {
-  //     if (entity.hasComponent(Velocity)) {
-  //       console.log('stopping velocity on', entity);
-  //       entity.getMutableComponent(Velocity).set({x: 0, y: 0});
-  //     }
-  //   });
-  // }
 }
 AISystem.queries = {
   npcs: {

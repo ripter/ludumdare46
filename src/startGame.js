@@ -53,8 +53,8 @@ export function startGame() {
   createMobEntity({
     name: 'Chris',
     resourceID: 'bald_beard',
-    x: 100,
-    y: 100,
+    x: 303,
+    y: 186,
     parent: mapSprite,
   })
     .addComponent(Player, {})
