@@ -23,6 +23,7 @@ export class DialogSystem extends System {
   loadStory(entity) {
     const { resourceID } = entity.getComponent(Dialog);
     const storyFile = pixi.loader.resources[resourceID].data;
+    if (!storyFile) { throw new Error(`Unknown story id: ${resourceID}`); }
     const story = new Story(storyFile);
 
     // Set the new story

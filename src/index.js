@@ -14,4 +14,5 @@ pixi.loader
   .add('dialog_menu', 'dialog/menu.json')
   .add('dialog_kimchi', 'dialog/kimchi.json')
   .add('dialog_janet', 'dialog/janet.json')
+  .add('dialog_me', 'dialog/me.json')
   .load(startGame);

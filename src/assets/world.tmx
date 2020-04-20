@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="95" height="55" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="2">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="95" height="55" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="3">
  <editorsettings>
   <export target="../../public/assets/world.json" format="json"/>
  </editorsettings>
@@ -181,12 +181,17 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="4" name="npcs" locked="1">
-  <object id="1" name="Kimchi" type="mob" x="176" y="160" width="16" height="16">
+ <objectgroup id="4" name="npcs">
+  <object id="1" name="Kimchi" type="mob" x="176" y="176" width="16" height="16">
    <properties>
     <property name="AI" value="simple"/>
     <property name="hasDialog" value="dialog_kimchi"/>
     <property name="resourceID" value="hard_hat"/>
+   </properties>
+  </object>
+  <object id="2" name="about_me" type="rect" x="32" y="128" width="16" height="16">
+   <properties>
+    <property name="hasDialog" value="dialog_me"/>
    </properties>
   </object>
  </objectgroup>
