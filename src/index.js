@@ -12,4 +12,5 @@ pixi.loader
   .add('ui_choices_map', 'assets/dialog_choices.json')
   .add('world_map', 'assets/world_map.json')
   .add('dialog_menu', 'dialog/menu.json')
+  .add('dialog_kimchi', 'dialog/kimchi.json')
   .load(startGame);

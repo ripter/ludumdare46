@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="40" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="3">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="40" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="3">
  <editorsettings>
   <export target="../../public/assets/world_map.json" format="json"/>
  </editorsettings>
@@ -95,6 +95,7 @@
   <object id="1" name="Kimchi" type="mob" x="256" y="112" width="16" height="16">
    <properties>
     <property name="AI" value="simple"/>
+    <property name="hasDialog" value="dialog_kimchi"/>
     <property name="resourceID" value="hard_hat"/>
    </properties>
   </object>
