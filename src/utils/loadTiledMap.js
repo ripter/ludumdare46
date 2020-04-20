@@ -1,17 +1,15 @@
 import * as PIXI from 'pixi.js';
 
+import { AI, Cursor, Slot } from '../components/singleValue';
 import { createColliderEntity } from '../entities/createColliderEntity';
 import { createMapObject } from './createMapObject';
 import { createMobEntity } from '../entities/createMobEntity';
+import { createRectEntity } from '../entities/createRectEntity';
 import { createSpriteEntity } from '../entities/createSpriteEntity';
 import { createTextEntity } from '../entities/createTextEntity';
 import { createTiledSprite } from './createTiledSprite';
-import { createRectEntity } from '../entities/createRectEntity';
 import { mapLayers } from '../consts/mapLayers';
 import { mapTypes } from '../consts/mapTypes';
-import {
-  Sprite, AI, Slot, Cursor,
-} from '../components/singleValue';
 
 // Returns a PIXI.Container with all the sprites and objects loaded from the Tiled Map
 export function loadTiledMap(textures, mapData) {
@@ -19,7 +17,6 @@ export function loadTiledMap(textures, mapData) {
   map.sortableChildren = true;
   const tileWidth = map.tileWidth = mapData.tilewidth;
   const tileHeight = map.tileHeight = mapData.tileheight;
-  const tileSet = mapData.tilesets.source;
 
   // Create a container for each layer
   mapData.layers.forEach((layer) => {

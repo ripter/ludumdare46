@@ -1,21 +1,23 @@
 import { System } from 'ecsy';
 import { Story } from 'inkjs';
 
-import { Cursor, DialogOptionPicked, DialogWindow, Rect, Slot, Sprite, Text } from '../components/singleValue';
+import {
+  Cursor, DialogOptionPicked, Rect, Slot, Sprite, Text,
+} from '../components/singleValue';
 import { Dialog } from '../components/Dialog';
 import { pixi } from '../singletons/pixi';
 
 
 export class DialogSystem extends System {
-  execute(delta) {
+  execute() {
     // Keep the cursor in the right slot.
-    this.queries.cursor.added.forEach(entity => this.moveToSlot(entity));
-    this.queries.cursor.changed.forEach(entity => this.moveToSlot(entity));
+    this.queries.cursor.added.forEach((entity) => this.moveToSlot(entity));
+    this.queries.cursor.changed.forEach((entity) => this.moveToSlot(entity));
 
     // When dialog is added, create a new Inky Story
-    this.queries.dialog.added.forEach(entity => this.loadStory(entity));
+    this.queries.dialog.added.forEach((entity) => this.loadStory(entity));
     // When the user picks a choice, continue the story!
-    this.queries.pickedChoice.added.forEach(entity => this.pickChoice(entity));
+    this.queries.pickedChoice.added.forEach((entity) => this.pickChoice(entity));
   }
 
   loadStory(entity) {
@@ -30,17 +32,15 @@ export class DialogSystem extends System {
 
   renderStory(story, entity) {
     const message = story.ContinueMaximally();
-    const choices = story.currentChoices.map(i => i.text);
+    const choices = story.currentChoices.map((i) => i.text);
     const { canContinue } = story;
-    console.log('canContinue', canContinue, story);
-    console.log('choices', choices);
 
     this.updateText('messageBody', message);
     this.updateText('secondaryChoice', choices[0]);
     this.updateText('primaryChoice', choices[1]);
 
     // No message or choices, means the story is over. close it down.
-    if (!canContinue && choices.length === 0 && message == '') {
+    if (!canContinue && choices.length === 0 && message === '') {
       entity.removeComponent(Dialog);
     }
   }
@@ -48,7 +48,6 @@ export class DialogSystem extends System {
   pickChoice(entity) {
     const { story } = entity.getComponent(Dialog);
     const pickedOption = parseInt(entity.getComponent(DialogOptionPicked).value, 10);
-    console.log('you picked', pickedOption);
     const hasChoices = story.currentChoices.length > 0;
 
     // Picked a choice
@@ -67,11 +66,10 @@ export class DialogSystem extends System {
 
   // Updates the text component with a matching uuid
   updateText(uuid, text) {
-    const entity = this.queries.text.results.find(e => e.getComponent(Text).value === uuid);
+    const entity = this.queries.text.results.find((e) => e.getComponent(Text).value === uuid);
     const sprite = entity.getMutableComponent(Sprite).value;
     sprite.text = text;
   }
-
 
 
   // Moves the cursor to a slot position.
@@ -80,7 +78,10 @@ export class DialogSystem extends System {
     const newSlotIndex = cursorEntity.getComponent(Cursor).value;
     const slotEntity = this.queries.slots.results.find((eSlot) => eSlot.getComponent(Slot).value === newSlotIndex);
 
-    if (!slotEntity) { console.error(`No Slot with ID ${newSlotIndex} found.`); return; }
+    if (!slotEntity) {
+      // return console.error(`No Slot with ID ${newSlotIndex} found.`);
+      throw new Error(`No Slot with ID ${newSlotIndex} found.`);
+    }
 
     const slotRect = slotEntity.getComponent(Rect).value;
     sprite.position.set(slotRect.x, slotRect.y);
@@ -111,6 +112,6 @@ DialogSystem.queries = {
     components: [DialogOptionPicked],
     listen: {
       added: true,
-    }
-  }
+    },
+  },
 };

@@ -1,8 +1,6 @@
-import * as PIXI from 'pixi.js';
-
+import { createTiledSprite } from '../utils/createTiledSprite';
 import { Sprite } from '../components/singleValue';
 import { world } from '../singletons/world';
-import { createTiledSprite } from '../utils/createTiledSprite';
 
 export function createSpriteEntity(textures, settings) {
   const sprite = createTiledSprite(textures, settings.tiledID);

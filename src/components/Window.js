@@ -8,12 +8,12 @@ export class Window extends Component {
   }
 
   reset() {
-    this.name = '',
+    this.name = '';
     this.systems.length = 0;
   }
 
   set(obj) {
     this.name = obj.name;
-    tis.systems = obj.systems;
+    this.systems = obj.systems;
   }
 }

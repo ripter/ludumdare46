@@ -13,5 +13,5 @@ export function createTextEntity(settings) {
   settings.parent.addChild(sprite);
   return world.createEntity()
     .addComponent(Sprite, { value: sprite })
-    .addComponent(Text, {value: settings.uuid});
+    .addComponent(Text, { value: settings.uuid });
 }

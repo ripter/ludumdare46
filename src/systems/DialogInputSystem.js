@@ -1,11 +1,11 @@
 import { System, Not } from 'ecsy';
 
 import { Input } from '../components/Input';
-import { Timeout, Cursor, DialogOptionPicked  } from '../components/singleValue';
+import { Timeout, Cursor, DialogOptionPicked } from '../components/singleValue';
 import { Dialog } from '../components/Dialog';
 
 export class DialogInputSystem extends System {
-  execute(delta) {
+  execute() {
     const dialogEntity = this.queries.dialog.results[0];
     const inputEntity = this.queries.input.results[0];
     if (!inputEntity || !dialogEntity) { return; }
@@ -25,7 +25,6 @@ export class DialogInputSystem extends System {
       tookAction = true;
     }
     else if (inputState.Confirm) {
-      console.log('Keep going!');
       dialogEntity.addComponent(DialogOptionPicked, {
         value: this.getCursorValue(),
       });
@@ -41,7 +40,6 @@ export class DialogInputSystem extends System {
   // Moves the Cursor into a new slot index by delta
   moveCursor(delta) {
     if (this.queries.cursor.results.length === 0) { return; }
-    const inputEntity = this.queries.input.results[0];
     const cursorEntity = this.queries.cursor.results[0];
     const currentSlot = parseInt(cursorEntity.getComponent(Cursor).value, 10);
     let newSlot = currentSlot + delta;

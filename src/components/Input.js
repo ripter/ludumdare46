@@ -9,6 +9,6 @@ export class Input extends Component {
   reset() {
   }
 
-  set(obj) {
-  }
+  // set(obj) {
+  // }
 }

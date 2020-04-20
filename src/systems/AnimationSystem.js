@@ -4,11 +4,10 @@ import { Mob } from '../components/Mob';
 import { Velocity } from '../components/Velocity';
 import { Sprite } from '../components/singleValue';
 import { directionFromVelocity } from '../utils/directionFromVelocity';
-import { DIRECTION_LIST } from '../consts/direction';
 
 // Updates Sprite.textures based on Direction and Velocity
 export class AnimationSystem extends System {
-  execute(delta) {
+  execute() {
     this.queries.mobs.results.forEach((entity) => {
       const sprite = entity.getMutableComponent(Sprite).value;
       const mob = entity.getMutableComponent(Mob);

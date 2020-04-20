@@ -1,7 +1,6 @@
 import { System } from 'ecsy';
 
 import { Player } from '../components/singleValue';
-import { Velocity } from '../components/Velocity';
 import { Input } from '../components/Input';
 
 // Sets Velocity to the Player based on input.
@@ -12,7 +11,7 @@ export class PlayerInputSystem extends System {
     document.addEventListener('keyup', this);
   }
 
-  execute(delta) {
+  execute() {
     // When Input is added, save a reference to it.
     this.queries.input.added.forEach((entity) => {
       this.inputState = entity.getComponent(Input);
@@ -24,7 +23,6 @@ export class PlayerInputSystem extends System {
     if (!this.inputState) { return; }
     const isDown = (event.type === 'keydown');
 
-    const { velocity } = this;
     switch (event.code) {
       case 'KeyD':
       case 'ArrowRight':
@@ -45,13 +43,14 @@ export class PlayerInputSystem extends System {
       case 'Escape':
         this.inputState.Cancel = isDown;
         this.inputState.MenuToggle = isDown;
+        break;
       case 'Enter':
       case 'Space':
         this.inputState.Confirm = isDown;
         break;
       default:
-        console.log('key code', event.code);
-      // ignored keys
+        // ignored keys
+        // console.log('key code', event.code);
     }
   }
 }

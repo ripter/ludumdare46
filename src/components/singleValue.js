@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Component } from 'ecsy';
 
 // helper class. Create a component with a `.value` property.

@@ -7,28 +7,6 @@ import { Velocity } from '../components/Velocity';
 import { AI, Timeout } from '../components/singleValue';
 import { velocityFromDirection } from '../utils/velocityFromDirection';
 
-export class AISystem extends System {
-  execute(delta) {
-    this.queries.npcs.results.forEach((entity) => {
-      const { speed } = entity.getComponent(Mob);
-      const ai = entity.getComponent(AI).value;
-
-      if (ai === AIType.simple) {
-        simpleMove(entity);
-      }
-      else if (ai === AIType.crazySpin) {
-        crazySpin(entity);
-      }
-
-      entity.addComponent(Timeout, { value: speed * 13 });
-    });
-  }
-}
-AISystem.queries = {
-  npcs: {
-    components: [AI, Mob, Velocity, Not(Timeout)],
-  },
-};
 
 function simpleMove(entity) {
   const velocity = entity.getMutableComponent(Velocity);
@@ -52,3 +30,27 @@ function crazySpin(entity) {
   };
   entity.getMutableComponent(Velocity).set(velocity);
 }
+
+
+export class AISystem extends System {
+  execute() {
+    this.queries.npcs.results.forEach((entity) => {
+      const { speed } = entity.getComponent(Mob);
+      const ai = entity.getComponent(AI).value;
+
+      if (ai === AIType.simple) {
+        simpleMove(entity);
+      }
+      else if (ai === AIType.crazySpin) {
+        crazySpin(entity);
+      }
+
+      entity.addComponent(Timeout, { value: speed * 13 });
+    });
+  }
+}
+AISystem.queries = {
+  npcs: {
+    components: [AI, Mob, Velocity, Not(Timeout)],
+  },
+};

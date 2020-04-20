@@ -1,16 +1,15 @@
-import * as PIXI from 'pixi.js';
-
 import { createMobEntity } from './entities/createMobEntity';
 import { Dialog } from './components/Dialog';
 import { DialogInputSystem } from './systems/DialogInputSystem';
-import { DialogWindow, Focus, FollowPlayer, Player, Sprite } from './components/singleValue';
+import {
+  DialogWindow, Focus, FollowPlayer, Player, Sprite,
+} from './components/singleValue';
 import { Input } from './components/Input';
 import { loadDialogMap } from './utils/loadDialogMap';
 import { loadTiledMap } from './utils/loadTiledMap';
 import { MapInputSystem } from './systems/MapInputSystem';
 import { pixi } from './singletons/pixi';
 import { sliceTexture } from './utils/sliceTexture';
-import { Velocity } from './components/Velocity';
 import { Window } from './components/Window';
 import { world } from './singletons/world';
 
@@ -37,7 +36,7 @@ export function startGame() {
       value: loadTiledMap(tileSet, resources.world_map.data),
     });
 
-  const windowDialog = world.createEntity()
+  world.createEntity()
     .addComponent(Window, {
       name: 'dialog',
       systems: [DialogInputSystem],
@@ -51,7 +50,7 @@ export function startGame() {
   // TODO: Spawn player from the TiledMap data
   const mapSprite = windowMap.getComponent(Sprite).value;
   // Create the Player Mob
-  const player = createMobEntity({
+  createMobEntity({
     name: 'Chris',
     resourceID: 'bald_beard',
     x: 100,

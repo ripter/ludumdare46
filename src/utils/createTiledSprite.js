@@ -1,5 +1,4 @@
 import * as PIXI from 'pixi.js';
-import { pixi } from '../singletons/pixi';
 
 // values from: http://doc.mapeditor.org/en/latest/reference/tmx-map-format/#data
 const FLIPPED_HORIZONTALLY_FLAG = 0x80000000;
@@ -32,7 +31,6 @@ export function createTiledSprite(textures, tileID) {
     sprite.angle = 180;
   }
   else if (flipped.vertically) {
-    console.log('sprite', sprite);
     throw new Error('ADD Feature');
   }
 

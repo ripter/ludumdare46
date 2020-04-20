@@ -1,16 +1,15 @@
 import { System } from 'ecsy';
 
 import { Dialog } from '../components/Dialog';
-import { Focus, Sprite, Timeout } from '../components/singleValue';
+import { Focus, Sprite } from '../components/singleValue';
 import { Input } from '../components/Input';
 import { pixi } from '../singletons/pixi';
 import { Window } from '../components/Window';
-import { world } from '../singletons/world';
 
 // Manages the active "window"
 // Enables/disables systems as the Focused window is updated.
 export class WindowSystem extends System {
-  execute(delta) {
+  execute() {
     const { windows, dialog } = this.queries;
 
     // When a window is added, add it to the PIXI Stage
@@ -66,7 +65,7 @@ export class WindowSystem extends System {
   toggleSystems(entity, method) {
     const { systems } = entity.getComponent(Window);
     systems.forEach((systemType) => {
-      const system = world.getSystem(systemType);
+      const system = this.world.getSystem(systemType);
       system[method]();
     });
   }

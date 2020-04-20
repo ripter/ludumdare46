@@ -1,7 +1,6 @@
 import { System } from 'ecsy';
 
 import { FollowPlayer, Sprite, Player } from '../components/singleValue';
-import { Velocity } from '../components/Velocity';
 
 
 export class FollowSystem extends System {
@@ -9,7 +8,7 @@ export class FollowSystem extends System {
     this.player = null; // Quick reference
   }
 
-  execute(delta) {
+  execute() {
     const { followers, player } = this.queries;
 
     // Save a handy reference to the player
@@ -19,7 +18,6 @@ export class FollowSystem extends System {
 
     followers.results.forEach((entity) => {
       const sprite = entity.getComponent(Sprite).value;
-      const targetEntity = entity.getComponent(FollowPlayer).target;
       const targetSprite = this.player.getComponent(Sprite).value;
 
       sprite.position.x = -targetSprite.position.x + (16 * 9);

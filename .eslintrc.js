@@ -27,5 +27,6 @@ module.exports = {
     'class-methods-use-this': 'off',
     'prefer-rest-params': 'off',
     'prefer-spread': 'off',
+    'prefer-destructuring': 'off',
   },
 };

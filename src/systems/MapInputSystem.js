@@ -6,7 +6,7 @@ import { Player, Timeout } from '../components/singleValue';
 import { Velocity } from '../components/Velocity';
 
 export class MapInputSystem extends System {
-  execute(delta) {
+  execute() {
     const inputEntity = this.queries.input.results[0];
     const playerEntity = this.queries.player.results[0];
     // Skip if either is missing.
@@ -14,8 +14,6 @@ export class MapInputSystem extends System {
     const inputState = inputEntity.getComponent(Input);
     const velocity = playerEntity.getMutableComponent(Velocity);
     let tookAction = false;
-
-    // console.log('MapInputSystem', inputState);
 
     //
     // Set Player Velocity based on Input
@@ -31,7 +29,6 @@ export class MapInputSystem extends System {
       playerEntity.addComponent(Dialog, { resourceID: 'dialog_menu' });
       tookAction = true;
     }
-
 
     // Timeout to give the user time to react
     if (tookAction) {
