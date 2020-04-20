@@ -31,6 +31,12 @@
                  "height":65,
                  "id":1,
                  "name":"message_body",
+                 "properties":[
+                        {
+                         "name":"uuid",
+                         "type":"string",
+                         "value":"messageBody"
+                        }],
                  "rotation":0,
                  "text":
                     {

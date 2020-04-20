@@ -8,11 +8,10 @@ export function createTextEntity(settings) {
     font: 'pixel', // Pixel Font from https://www.kenney.nl/
     align: 'left',
   });
-  settings.parent.addChild(sprite);
-
   sprite.position.set(settings.x, settings.y);
 
+  settings.parent.addChild(sprite);
   return world.createEntity()
     .addComponent(Sprite, { value: sprite })
-    .addComponent(Text, {});
+    .addComponent(Text, {value: settings.uuid});
 }

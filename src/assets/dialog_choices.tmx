@@ -21,9 +21,15 @@
    </properties>
   </object>
   <object id="2" name="secondaryChoice" type="text" x="20" y="0" width="80" height="16">
+   <properties>
+    <property name="uuid" value="secondaryChoice"/>
+   </properties>
    <text pixelsize="10" wrap="1">Close</text>
   </object>
   <object id="3" name="primaryChoice" type="text" x="132" y="0" width="80" height="16">
+   <properties>
+    <property name="uuid" value="primaryChoice"/>
+   </properties>
    <text pixelsize="10" wrap="1">Continue</text>
   </object>
   <object id="4" name="slot 0" type="rect" x="0" y="0" width="16" height="16">

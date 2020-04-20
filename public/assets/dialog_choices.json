@@ -53,6 +53,12 @@
                  "height":16,
                  "id":2,
                  "name":"secondaryChoice",
+                 "properties":[
+                        {
+                         "name":"uuid",
+                         "type":"string",
+                         "value":"secondaryChoice"
+                        }],
                  "rotation":0,
                  "text":
                     {
@@ -70,6 +76,12 @@
                  "height":16,
                  "id":3,
                  "name":"primaryChoice",
+                 "properties":[
+                        {
+                         "name":"uuid",
+                         "type":"string",
+                         "value":"primaryChoice"
+                        }],
                  "rotation":0,
                  "text":
                     {

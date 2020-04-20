@@ -3,7 +3,7 @@ import { Story } from 'inkjs';
 
 import { pixi } from '../singletons/pixi';
 import {
-  Dialog, Cursor, Slot, Sprite, Rect, DialogWindow
+  Dialog, Cursor, Slot, Sprite, Rect, DialogWindow, Text
 } from '../components/singleValue';
 
 
@@ -22,15 +22,20 @@ export class DialogSystem extends System {
     const storyFile = pixi.loader.resources[resourceID].data;
     const story = new Story(storyFile);
 
-    const windowEntity = this.queries.window.results[0];
-    const container = windowEntity.getComponent(Sprite).value;
-    const messageBody = container.getChildByName('messageUI');
+    const message = story.ContinueMaximally();
+    const choices = story.currentChoices.map(i => i.text);
+    console.log('story', story);
 
-    console.log('story', story.Continue());
-    console.log('root', container);
-    console.log('messageBody', messageBody);
-    // const dialogContainer = pixi.stage.getChildByName('dialog');
-    // console.log('dialogContainer', dialogContainer )
+    this.updateText('messageBody', message);
+    this.updateText('secondaryChoice', choices[0]);
+    this.updateText('primaryChoice', choices[1]);
+  }
+
+  // Updates the text component with a matching uuid
+  updateText(uuid, text) {
+    const entity = this.queries.text.results.find(e => e.getComponent(Text).value === uuid);
+    const sprite = entity.getMutableComponent(Sprite).value;
+    sprite.text = text;
   }
 
 
@@ -65,7 +70,7 @@ DialogSystem.queries = {
       removed: true,
     },
   },
-  window: {
-    components: [DialogWindow],
+  text: {
+    components: [Text],
   }
 };
