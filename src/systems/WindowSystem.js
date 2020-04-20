@@ -1,8 +1,7 @@
 import { System } from 'ecsy';
 
-import {
-  Dialog, Focus, Sprite, Timeout,
-} from '../components/singleValue';
+import { Dialog } from '../components/Dialog';
+import { Focus, Sprite, Timeout } from '../components/singleValue';
 import { Input } from '../components/Input';
 import { pixi } from '../singletons/pixi';
 import { Window } from '../components/Window';

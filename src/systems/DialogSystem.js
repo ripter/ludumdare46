@@ -1,10 +1,9 @@
 import { System } from 'ecsy';
 import { Story } from 'inkjs';
 
+import { Cursor, DialogOptionPicked, DialogWindow, Rect, Slot, Sprite, Text } from '../components/singleValue';
+import { Dialog } from '../components/Dialog';
 import { pixi } from '../singletons/pixi';
-import {
-  Dialog, Cursor, Slot, Sprite, Rect, DialogWindow, Text
-} from '../components/singleValue';
 
 
 export class DialogSystem extends System {
@@ -15,20 +14,55 @@ export class DialogSystem extends System {
 
     // When dialog is added, create a new Inky Story
     this.queries.dialog.added.forEach(entity => this.loadStory(entity));
+    // When the user picks a choice, continue the story!
+    this.queries.pickedChoice.added.forEach(entity => this.pickChoice(entity));
   }
 
-  loadStory(dialogEntity) {
-    const resourceID = dialogEntity.getComponent(Dialog).value;
+  loadStory(entity) {
+    const { resourceID } = entity.getComponent(Dialog);
     const storyFile = pixi.loader.resources[resourceID].data;
     const story = new Story(storyFile);
 
+    // Set the new story
+    entity.getMutableComponent(Dialog).story = story;
+    this.renderStory(story, entity);
+  }
+
+  renderStory(story, entity) {
     const message = story.ContinueMaximally();
     const choices = story.currentChoices.map(i => i.text);
-    console.log('story', story);
+    const { canContinue } = story;
+    console.log('canContinue', canContinue, story);
+    console.log('choices', choices);
 
     this.updateText('messageBody', message);
     this.updateText('secondaryChoice', choices[0]);
     this.updateText('primaryChoice', choices[1]);
+
+    // No message or choices, means the story is over. close it down.
+    if (!canContinue && choices.length === 0 && message == '') {
+      entity.removeComponent(Dialog);
+    }
+  }
+
+  pickChoice(entity) {
+    const { story } = entity.getComponent(Dialog);
+    const pickedOption = parseInt(entity.getComponent(DialogOptionPicked).value, 10);
+    console.log('you picked', pickedOption);
+    const hasChoices = story.currentChoices.length > 0;
+
+    // Picked a choice
+    if (hasChoices) {
+      story.ChooseChoiceIndex(pickedOption);
+      this.renderStory(story, entity);
+    }
+    // Clicked when there are no choices. aka end of story
+    else {
+      entity.removeComponent(Dialog);
+    }
+
+    // we handled the option, so we can remove the component.
+    entity.removeComponent(DialogOptionPicked);
   }
 
   // Updates the text component with a matching uuid
@@ -72,5 +106,11 @@ DialogSystem.queries = {
   },
   text: {
     components: [Text],
+  },
+  pickedChoice: {
+    components: [DialogOptionPicked],
+    listen: {
+      added: true,
+    }
   }
 };

@@ -1,7 +1,8 @@
 import { System, Not } from 'ecsy';
 
+import { Dialog } from '../components/Dialog';
 import { Input } from '../components/Input';
-import { Player, Dialog, Timeout } from '../components/singleValue';
+import { Player, Timeout } from '../components/singleValue';
 import { Velocity } from '../components/Velocity';
 
 export class MapInputSystem extends System {
@@ -27,8 +28,7 @@ export class MapInputSystem extends System {
     else { velocity.y = 0; }
 
     if (inputState.MenuToggle) {
-      console.log('Map Input, Menu Toggle');
-      playerEntity.addComponent(Dialog, { value: 'dialog_menu' });
+      playerEntity.addComponent(Dialog, { resourceID: 'dialog_menu' });
       tookAction = true;
     }
 

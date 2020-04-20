@@ -2,8 +2,8 @@ LD46: Keep it alive
 Use WASD/Arrow keys to move.
 by twitter@ripter001
 Inspired by Earthbound.
-    * Neat
-    * Amazing
+    + [Neat]
+    + [Amazing]
         -> thanks
 
 

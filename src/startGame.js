@@ -1,8 +1,9 @@
 import * as PIXI from 'pixi.js';
 
 import { createMobEntity } from './entities/createMobEntity';
-import { Dialog, DialogWindow, Focus, FollowPlayer, Player, Sprite } from './components/singleValue';
+import { Dialog } from './components/Dialog';
 import { DialogInputSystem } from './systems/DialogInputSystem';
+import { DialogWindow, Focus, FollowPlayer, Player, Sprite } from './components/singleValue';
 import { Input } from './components/Input';
 import { loadDialogMap } from './utils/loadDialogMap';
 import { loadTiledMap } from './utils/loadTiledMap';
@@ -58,7 +59,7 @@ export function startGame() {
     parent: mapSprite,
   })
     .addComponent(Player, {})
-    .addComponent(Dialog, { value: 'dialog_menu' });
+    .addComponent(Dialog, { resourceID: 'dialog_menu' });
 
 
   // Start the Game loop.

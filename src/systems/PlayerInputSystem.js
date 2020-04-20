@@ -1,6 +1,6 @@
 import { System } from 'ecsy';
 
-import { Player, Dialog } from '../components/singleValue';
+import { Player } from '../components/singleValue';
 import { Velocity } from '../components/Velocity';
 import { Input } from '../components/Input';
 
@@ -13,14 +13,10 @@ export class PlayerInputSystem extends System {
   }
 
   execute(delta) {
+    // When Input is added, save a reference to it.
     this.queries.input.added.forEach((entity) => {
       this.inputState = entity.getComponent(Input);
     });
-    // const players = this.queries.players.results;
-    // if (players.length === 0) { return; }
-    // const player = players[0];
-    // const velocity = player.getMutableComponent(Velocity);
-    // velocity.set(this.velocity);
   }
 
   handleEvent(event) {
@@ -57,8 +53,6 @@ export class PlayerInputSystem extends System {
         console.log('key code', event.code);
       // ignored keys
     }
-
-    // console.log('inputState', this.inputState);
   }
 }
 PlayerInputSystem.queries = {

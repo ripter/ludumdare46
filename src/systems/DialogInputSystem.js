@@ -1,7 +1,8 @@
 import { System, Not } from 'ecsy';
 
 import { Input } from '../components/Input';
-import { Timeout, Cursor, Dialog } from '../components/singleValue';
+import { Timeout, Cursor, DialogOptionPicked  } from '../components/singleValue';
+import { Dialog } from '../components/Dialog';
 
 export class DialogInputSystem extends System {
   execute(delta) {
@@ -10,8 +11,6 @@ export class DialogInputSystem extends System {
     if (!inputEntity || !dialogEntity) { return; }
     const inputState = inputEntity.getComponent(Input);
     let tookAction = false;
-
-    // console.log('DialogInputSystem', inputState);
 
     if (inputState.MoveRight) {
       this.moveCursor(1);
@@ -27,12 +26,15 @@ export class DialogInputSystem extends System {
     }
     else if (inputState.Confirm) {
       console.log('Keep going!');
+      dialogEntity.addComponent(DialogOptionPicked, {
+        value: this.getCursorValue(),
+      });
       tookAction = true;
     }
 
     // Timeout to give the user time to react
     if (tookAction) {
-      inputEntity.addComponent(Timeout, { value: 30 });
+      inputEntity.addComponent(Timeout, { value: 10 });
     }
   }
 
@@ -52,6 +54,11 @@ export class DialogInputSystem extends System {
     }
 
     cursorEntity.getMutableComponent(Cursor).value = `${newSlot}`;
+  }
+
+  getCursorValue() {
+    const cursorEntity = this.queries.cursor.results[0];
+    return parseInt(cursorEntity.getComponent(Cursor).value, 10);
   }
 }
 DialogInputSystem.queries = {
