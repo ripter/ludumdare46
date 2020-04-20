@@ -11,6 +11,8 @@ export class DialogInputSystem extends System {
     const inputState = inputEntity.getComponent(Input);
     let tookAction = false;
 
+    // console.log('DialogInputSystem', inputState);
+
     if (inputState.MoveRight) {
       this.moveCursor(1);
       tookAction = true;
@@ -30,9 +32,10 @@ export class DialogInputSystem extends System {
 
     // Timeout to give the user time to react
     if (tookAction) {
-      inputEntity.addComponent(Timeout, {value: 30});
+      inputEntity.addComponent(Timeout, { value: 30 });
     }
   }
+
   // Moves the Cursor into a new slot index by delta
   moveCursor(delta) {
     if (this.queries.cursor.results.length === 0) { return; }
@@ -48,7 +51,7 @@ export class DialogInputSystem extends System {
       newSlot = 1;
     }
 
-    cursorEntity.getMutableComponent(Cursor).value =  ''+newSlot;
+    cursorEntity.getMutableComponent(Cursor).value = `${newSlot}`;
   }
 }
 DialogInputSystem.queries = {
@@ -60,5 +63,5 @@ DialogInputSystem.queries = {
   },
   dialog: {
     components: [Dialog],
-  }
-}
+  },
+};

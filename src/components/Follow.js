@@ -5,9 +5,11 @@ export class Follow extends Component {
     super();
     this.reset();
   }
+
   reset() {
     this.target = null;
   }
+
   set(obj) {
     this.target = obj.target;
   }

@@ -1,7 +1,7 @@
 // from https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_collision_detection
 export function intersect(a, b) {
-  return (a.minX <= b.maxX && a.maxX >= b.minX) &&
-    (a.minY <= b.maxY && a.maxY >= b.minY);
+  return (a.minX <= b.maxX && a.maxX >= b.minX)
+    && (a.minY <= b.maxY && a.maxY >= b.minY);
 
   // if (!isColliding) { return false; }
   //
@@ -90,8 +90,10 @@ export function intersect(a, b) {
 
 export function spriteToBBox(sprite) {
   return {
-    minX: sprite.position.x, maxX: sprite.position.x + sprite.width,
-    minY: sprite.position.y, maxY: sprite.position.y + sprite.height,
+    minX: sprite.position.x,
+    maxX: sprite.position.x + sprite.width,
+    minY: sprite.position.y,
+    maxY: sprite.position.y + sprite.height,
   };
 }
 

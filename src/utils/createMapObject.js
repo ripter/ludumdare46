@@ -1,11 +1,11 @@
 
 // Converts Tiled Object into a mapObject we can use for game logic.
 export function createMapObject(obj) {
-  const mapObject = Object.assign({}, {
+  const mapObject = {
     type: obj.type,
     x: obj.x,
     y: obj.y,
-  });
+  };
 
   if (obj.name) {
     mapObject.name = obj.name;
@@ -17,7 +17,7 @@ export function createMapObject(obj) {
   if (!obj.properties) { return mapObject; }
 
   // Put all the custom properties directly on object.
-  obj.properties.forEach(prop => {
+  obj.properties.forEach((prop) => {
     mapObject[prop.name] = prop.value;
   });
 

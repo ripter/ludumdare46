@@ -1,13 +1,14 @@
 import { System } from 'ecsy';
 
-import { FollowPlayer } from '../components/singleValue';
+import { FollowPlayer, Sprite, Player } from '../components/singleValue';
 import { Velocity } from '../components/Velocity';
-import { Sprite, Player } from '../components/singleValue';
+
 
 export class FollowSystem extends System {
   init() {
     this.player = null; // Quick reference
   }
+
   execute(delta) {
     const { followers, player } = this.queries;
 
@@ -16,7 +17,7 @@ export class FollowSystem extends System {
       this.player = player.added[0];
     }
 
-    followers.results.forEach(entity => {
+    followers.results.forEach((entity) => {
       const sprite = entity.getComponent(Sprite).value;
       const targetEntity = entity.getComponent(FollowPlayer).target;
       const targetSprite = this.player.getComponent(Sprite).value;
@@ -24,7 +25,6 @@ export class FollowSystem extends System {
       sprite.position.x = -targetSprite.position.x + (16 * 9);
       sprite.position.y = -targetSprite.position.y + (16 * 4);
     });
-
   }
 }
 FollowSystem.queries = {
@@ -37,4 +37,4 @@ FollowSystem.queries = {
       added: true,
     },
   },
-}
+};

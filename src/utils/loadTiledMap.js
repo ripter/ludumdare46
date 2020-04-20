@@ -9,7 +9,9 @@ import { createTiledSprite } from './createTiledSprite';
 import { createRectEntity } from '../entities/createRectEntity';
 import { mapLayers } from '../consts/mapLayers';
 import { mapTypes } from '../consts/mapTypes';
-import { Sprite, AI, Slot, Cursor } from '../components/singleValue';
+import {
+  Sprite, AI, Slot, Cursor,
+} from '../components/singleValue';
 
 // Returns a PIXI.Container with all the sprites and objects loaded from the Tiled Map
 export function loadTiledMap(textures, mapData) {
@@ -20,7 +22,7 @@ export function loadTiledMap(textures, mapData) {
   const tileSet = mapData.tilesets.source;
 
   // Create a container for each layer
-  mapData.layers.forEach(layer => {
+  mapData.layers.forEach((layer) => {
     // Create a container for each layer.
     const container = new PIXI.Container();
     container.name = layer.name;
@@ -42,7 +44,7 @@ export function loadTiledMap(textures, mapData) {
     }
     // Object layers
     else if (layer.type === 'objectgroup') {
-      layer.objects.forEach(obj => {
+      layer.objects.forEach((obj) => {
         const mapObject = createMapObject(obj);
         mapObject.parent = container;
         let entity;
@@ -63,13 +65,13 @@ export function loadTiledMap(textures, mapData) {
         //
         // Add Components defiend in the map data
         if (mapObject.AI) {
-          entity.addComponent(AI, {value: mapObject.AI});
+          entity.addComponent(AI, { value: mapObject.AI });
         }
         if (mapObject.slot) {
-          entity.addComponent(Slot, {value: mapObject.slot});
+          entity.addComponent(Slot, { value: mapObject.slot });
         }
         if (mapObject.cursor) {
-          entity.addComponent(Cursor, {value: mapObject.cursor});
+          entity.addComponent(Cursor, { value: mapObject.cursor });
         }
       });
     }

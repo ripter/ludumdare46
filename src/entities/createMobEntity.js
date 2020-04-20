@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 
-import { DIRECTION, DIRECTION_LIST} from '../consts/direction';
+import { DIRECTION, DIRECTION_LIST } from '../consts/direction';
 import { Mob } from '../components/Mob';
 import { pixi } from '../singletons/pixi';
 import { Sprite, Collider } from '../components/singleValue';
@@ -10,8 +10,10 @@ import { world } from '../singletons/world';
 
 export function createMobEntity(settings) {
   const { spritesheet } = pixi.loader.resources.mobs;
-  const { resourceID, x, y, parent, name } = settings;
-  const animations = DIRECTION_LIST.map(dir => spritesheet.animations[`${resourceID}_${dir}`]);
+  const {
+    resourceID, x, y, parent, name,
+  } = settings;
+  const animations = DIRECTION_LIST.map((dir) => spritesheet.animations[`${resourceID}_${dir}`]);
   const sprite = new PIXI.AnimatedSprite(animations[DIRECTION.SOUTH]);
 
   sprite.name = name;
@@ -28,7 +30,7 @@ export function createMobEntity(settings) {
       direction: DIRECTION.SOUTH,
     })
     .addComponent(Velocity)
-    .addComponent(Collider)
+    .addComponent(Collider);
 
   return mob;
 }

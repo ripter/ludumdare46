@@ -1,13 +1,18 @@
 import { System } from 'ecsy';
+import { Story } from 'inkjs';
 
 import { pixi } from '../singletons/pixi';
-import { Dialog, Cursor, Slot, Sprite, Rect } from '../components/singleValue';
+import {
+  Dialog, Cursor, Slot, Sprite, Rect,
+} from '../components/singleValue';
 
-export class DialogSystem  extends System {
+console.log('inkjs', Story);
+
+export class DialogSystem extends System {
   execute(delta) {
     // Keep the cursor in the right slot.
-    this.queries.cursor.added.forEach(entity => this.moveToSlot(entity));
-    this.queries.cursor.changed.forEach(entity => this.moveToSlot(entity));
+    this.queries.cursor.added.forEach((entity) => this.moveToSlot(entity));
+    this.queries.cursor.changed.forEach((entity) => this.moveToSlot(entity));
 
     // Show/Hide
   }
@@ -15,7 +20,7 @@ export class DialogSystem  extends System {
   moveToSlot(cursorEntity) {
     const sprite = cursorEntity.getComponent(Sprite).value;
     const newSlotIndex = cursorEntity.getComponent(Cursor).value;
-    const slotEntity = this.queries.slots.results.find(eSlot => eSlot.getComponent(Slot).value === newSlotIndex);
+    const slotEntity = this.queries.slots.results.find((eSlot) => eSlot.getComponent(Slot).value === newSlotIndex);
 
     if (!slotEntity) { console.error(`No Slot with ID ${newSlotIndex} found.`); return; }
 
@@ -41,4 +46,4 @@ DialogSystem.queries = {
       removed: true,
     },
   },
-}
+};

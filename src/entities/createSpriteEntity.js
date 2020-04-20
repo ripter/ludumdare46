@@ -10,7 +10,7 @@ export function createSpriteEntity(textures, settings) {
   settings.parent.addChild(sprite);
 
   const entity = world.createEntity()
-    .addComponent(Sprite, {value: sprite})
+    .addComponent(Sprite, { value: sprite });
 
   return entity;
 }

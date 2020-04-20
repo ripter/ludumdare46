@@ -5,10 +5,12 @@ export class Window extends Component {
     super();
     this.reset();
   }
+
   reset() {
 
   }
+
   set(obj) {
-    
+
   }
 }

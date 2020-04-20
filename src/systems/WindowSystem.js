@@ -1,34 +1,30 @@
 import { System } from 'ecsy';
 
+import {
+  Dialog, Focus, Sprite, Timeout,
+} from '../components/singleValue';
+import { Input } from '../components/Input';
 import { pixi } from '../singletons/pixi';
-import { world } from '../singletons/world';
 import { Window } from '../components/Window';
-import { Focus, Sprite, Dialog } from '../components/singleValue';
+import { world } from '../singletons/world';
 
 // Manages the active "window"
 // Enables/disables systems as the Focused window is updated.
 export class WindowSystem extends System {
   execute(delta) {
-    const { focusedWindows, windows, dialog } = this.queries;
+    const { windows, dialog } = this.queries;
 
     // When a window is added, add it to the PIXI Stage
-    windows.added.forEach(entity => {
+    windows.added.forEach((entity) => {
       const sprite = entity.getComponent(Sprite).value;
       pixi.stage.addChild(sprite);
+      // When window is added, stop it's systems.
       this.toggleSystems(entity, 'stop');
     });
     // When a window is removed, remove it from the PIXI Stage
-    windows.removed.forEach(entity => {
+    windows.removed.forEach((entity) => {
       const sprite = entity.getComponent(Sprite).value;
       pixi.stage.removeChild(sprite);
-    });
-
-    // start/stop systems as windows change focus.
-    focusedWindows.added.forEach(entity => {
-      this.toggleSystems(entity, 'play');
-    });
-    focusedWindows.removed.forEach(entity => {
-      this.toggleSystems(entity, 'stop');
     });
 
     // Switch Focus when the Popup is added/removed.
@@ -50,24 +46,27 @@ export class WindowSystem extends System {
   }
 
   findWindowByName(name) {
-    return this.queries.windows.results.find(entity => entity.getComponent(Window).name === name);
+    return this.queries.windows.results.find((entity) => entity.getComponent(Window).name === name);
   }
 
   setFocusOnWindow(windowEntity) {
     // Remove Focus
-    this.queries.focusedWindows.results.forEach(entity => {
+    this.queries.focusedWindows.results.forEach((entity) => {
       // skip if the new window is the old window.
       if (entity === windowEntity) { return; }
       entity.removeComponent(Focus);
+      this.toggleSystems(entity, 'stop');
     });
+
     // Add Focus to the new window
     windowEntity.addComponent(Focus, {});
+    this.toggleSystems(windowEntity, 'play');
   }
 
   // Toggles all the systems
   toggleSystems(entity, method) {
     const { systems } = entity.getComponent(Window);
-    systems.forEach(systemType => {
+    systems.forEach((systemType) => {
       const system = world.getSystem(systemType);
       system[method]();
     });
@@ -79,7 +78,7 @@ WindowSystem.queries = {
     listen: {
       added: true,
       removed: true,
-    }
+    },
   },
   focusedWindows: {
     components: [Window, Focus],
@@ -93,6 +92,9 @@ WindowSystem.queries = {
     listen: {
       added: true,
       removed: true,
-    }
-  }
-}
+    },
+  },
+  input: {
+    components: [Input],
+  },
+};

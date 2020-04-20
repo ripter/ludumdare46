@@ -5,9 +5,11 @@ export class Velocity extends Component {
     super();
     this.reset();
   }
+
   reset() {
     this.x = this.y = 0;
   }
+
   set(obj) {
     this.x = obj.x;
     this.y = obj.y;

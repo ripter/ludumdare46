@@ -13,7 +13,7 @@ export class PlayerInputSystem extends System {
   }
 
   execute(delta) {
-    this.queries.input.added.forEach(entity => {
+    this.queries.input.added.forEach((entity) => {
       this.inputState = entity.getComponent(Input);
     });
     // const players = this.queries.players.results;
@@ -26,9 +26,9 @@ export class PlayerInputSystem extends System {
   handleEvent(event) {
     // Skip if we have no place to store the data.
     if (!this.inputState) { return; }
-    const isDown = (event.type === 'keydown') ? true : false;
+    const isDown = (event.type === 'keydown');
 
-    const {velocity} = this;
+    const { velocity } = this;
     switch (event.code) {
       case 'KeyD':
       case 'ArrowRight':
@@ -48,6 +48,7 @@ export class PlayerInputSystem extends System {
         break;
       case 'Escape':
         this.inputState.Cancel = isDown;
+        this.inputState.MenuToggle = isDown;
       case 'Enter':
       case 'Space':
         this.inputState.Confirm = isDown;
@@ -70,4 +71,4 @@ PlayerInputSystem.queries = {
       added: true,
     },
   },
-}
+};

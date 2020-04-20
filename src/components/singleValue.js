@@ -6,9 +6,11 @@ class SingleValueComponent extends Component {
     super();
     this.reset();
   }
+
   reset() {
     this.value = null;
   }
+
   set(obj) {
     this.value = obj.value;
   }

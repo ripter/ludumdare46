@@ -10,8 +10,8 @@ export class CollisionSystem extends System {
     const collidables = this.queries.collidables.results;
 
     // If Velocity would cause a collision, reset Velocity on the collider.
-    this.queries.colliders.results.forEach(collider => {
-      collidables.forEach(collidable => {
+    this.queries.colliders.results.forEach((collider) => {
+      collidables.forEach((collidable) => {
         if (collider === collidable) { return; }
         const isColliding = doesIntersect(collider, collidable);
 
@@ -28,8 +28,8 @@ CollisionSystem.queries = {
   },
   collidables: {
     components: [Collider],
-  }
-}
+  },
+};
 
 
 // AABB Collision detection

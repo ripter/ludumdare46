@@ -13,6 +13,6 @@ export function createTextEntity(settings) {
   sprite.position.set(settings.x, settings.y);
 
   return world.createEntity()
-    .addComponent(Sprite, {value: sprite})
-    .addComponent(Text, {})
+    .addComponent(Sprite, { value: sprite })
+    .addComponent(Text, {});
 }

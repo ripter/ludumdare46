@@ -5,8 +5,10 @@ export class Input extends Component {
     super();
     this.reset();
   }
+
   reset() {
   }
+
   set(obj) {
   }
 }

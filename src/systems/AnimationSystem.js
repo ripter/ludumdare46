@@ -9,7 +9,7 @@ import { DIRECTION_LIST } from '../consts/direction';
 // Updates Sprite.textures based on Direction and Velocity
 export class AnimationSystem extends System {
   execute(delta) {
-    this.queries.mobs.results.forEach(entity => {
+    this.queries.mobs.results.forEach((entity) => {
       const sprite = entity.getMutableComponent(Sprite).value;
       const mob = entity.getMutableComponent(Mob);
       const velocity = entity.getComponent(Velocity);
@@ -36,6 +36,6 @@ export class AnimationSystem extends System {
 
 AnimationSystem.queries = {
   mobs: {
-    components: [Mob, Sprite, Velocity]
-  }
-}
+    components: [Mob, Sprite, Velocity],
+  },
+};

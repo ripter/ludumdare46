@@ -5,7 +5,7 @@ import { Timeout } from '../components/singleValue';
 // When Timeout is added to an entity, it counts down and then removes it's self.
 export class TimeoutSystem extends System {
   execute(delta) {
-    this.queries.active.results.forEach(entity => {
+    this.queries.active.results.forEach((entity) => {
       const timeLeft = entity.getMutableComponent(Timeout);
       timeLeft.value -= delta;
 
@@ -18,5 +18,5 @@ export class TimeoutSystem extends System {
 TimeoutSystem.queries = {
   active: {
     components: [Timeout],
-  }
-}
+  },
+};
