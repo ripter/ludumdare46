@@ -61,7 +61,6 @@ export function loadTiledMap(textures, mapData) {
           entity = createRectEntity(mapObject);
         }
         else if (obj.type === mapTypes.collider) {
-          console.log('Collider', mapObject, obj);
           entity = createSpriteEntity(textures, mapObject)
             .addComponent(Collider, {})
         }

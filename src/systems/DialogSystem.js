@@ -2,7 +2,7 @@ import { System } from 'ecsy';
 import { Story } from 'inkjs';
 
 import {
-  Cursor, DialogOptionPicked, Rect, Slot, Sprite, Text,
+  Cursor, DialogOptionPicked, Player, Rect, Slot, Sprite, Text
 } from '../components/singleValue';
 import { Dialog } from '../components/Dialog';
 import { pixi } from '../singletons/pixi';
@@ -40,6 +40,9 @@ export class DialogSystem extends System {
     this.updateText('secondaryChoice', choices[0]);
     this.updateText('primaryChoice', choices[1] || 'Continue');
 
+    // Apply tags.
+    this.runTags(story.currentTags);
+
     // No message or choices, means the story is over. close it down.
     if (!canContinue && choices.length === 0 && message === '') {
       entity.removeComponent(Dialog);
@@ -72,7 +75,6 @@ export class DialogSystem extends System {
     sprite.text = text;
   }
 
-
   // Moves the cursor to a slot position.
   moveToSlot(cursorEntity) {
     const sprite = cursorEntity.getComponent(Sprite).value;
@@ -86,6 +88,19 @@ export class DialogSystem extends System {
 
     const slotRect = slotEntity.getComponent(Rect).value;
     sprite.position.set(slotRect.x, slotRect.y);
+  }
+
+  runTags(tags) {
+    const entity = this.queries.player.results[0];
+    const player = entity.getComponent(Player).value || {};
+
+    tags.forEach(tag => {
+      if (!player[tag]) { player[tag] = 0;}
+      player[tag] += 1;
+    });
+
+    entity.getMutableComponent(Player).value = player;
+    console.log('new tags', entity.getComponent(Player).value);
   }
 }
 DialogSystem.queries = {
@@ -114,5 +129,8 @@ DialogSystem.queries = {
     listen: {
       added: true,
     },
+  },
+  player: {
+    components: [Player],
   },
 };
