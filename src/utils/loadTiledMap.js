@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js';
 
 import {
-  AI, Cursor, Slot, HasDialog,
+  AI, Cursor, Slot, HasDialog, Collider
 } from '../components/singleValue';
 import { createColliderEntity } from '../entities/createColliderEntity';
 import { createMapObject } from './createMapObject';
@@ -59,6 +59,11 @@ export function loadTiledMap(textures, mapData) {
         }
         else if (obj.type === mapTypes.rect) {
           entity = createRectEntity(mapObject);
+        }
+        else if (obj.type === mapTypes.collider) {
+          console.log('Collider', mapObject, obj);
+          entity = createSpriteEntity(textures, mapObject)
+            .addComponent(Collider, {})
         }
 
         //

@@ -15,4 +15,6 @@ pixi.loader
   .add('dialog_kimchi', 'dialog/kimchi.json')
   .add('dialog_janet', 'dialog/janet.json')
   .add('dialog_me', 'dialog/me.json')
+  .add('dialog_police_warn', 'dialog/police_warn.json')
+  .add('dialog_audery_2', 'dialog/audery_2.json')
   .load(startGame);

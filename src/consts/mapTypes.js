@@ -5,4 +5,5 @@ export const mapTypes = {
   text: 'text',
   sprite: 'sprite',
   rect: 'rect',
+  collider: 'collider',
 };

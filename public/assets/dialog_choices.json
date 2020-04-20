@@ -38,9 +38,9 @@
                          "value":"0"
                         }, 
                         {
-                         "name":"tiledID",
+                         "name":"resourceID",
                          "type":"string",
-                         "value":"20"
+                         "value":"1"
                         }],
                  "rotation":0,
                  "type":"sprite",

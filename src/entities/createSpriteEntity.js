@@ -3,7 +3,7 @@ import { Sprite } from '../components/singleValue';
 import { world } from '../singletons/world';
 
 export function createSpriteEntity(textures, settings) {
-  const sprite = createTiledSprite(textures, settings.tiledID);
+  const sprite = createTiledSprite(textures, settings.resourceID);
   sprite.position.set(settings.x, settings.y);
   settings.parent.addChild(sprite);
 

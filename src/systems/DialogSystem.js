@@ -38,7 +38,7 @@ export class DialogSystem extends System {
 
     this.updateText('messageBody', message);
     this.updateText('secondaryChoice', choices[0]);
-    this.updateText('primaryChoice', choices[1]);
+    this.updateText('primaryChoice', choices[1] || 'Continue');
 
     // No message or choices, means the story is over. close it down.
     if (!canContinue && choices.length === 0 && message === '') {

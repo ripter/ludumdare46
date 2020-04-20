@@ -17,7 +17,7 @@
   <object id="1" name="indicator" type="sprite" x="0" y="48" width="16" height="16">
    <properties>
     <property name="cursor" value="0"/>
-    <property name="tiledID" value="20"/>
+    <property name="resourceID" value="1"/>
    </properties>
   </object>
   <object id="2" name="secondaryChoice" type="text" x="20" y="0" width="80" height="16">
