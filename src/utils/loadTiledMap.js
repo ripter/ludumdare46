@@ -6,9 +6,10 @@ import { createMobEntity } from '../entities/createMobEntity';
 import { createSpriteEntity } from '../entities/createSpriteEntity';
 import { createTextEntity } from '../entities/createTextEntity';
 import { createTiledSprite } from './createTiledSprite';
+import { createRectEntity } from '../entities/createRectEntity';
 import { mapLayers } from '../consts/mapLayers';
 import { mapTypes } from '../consts/mapTypes';
-import { Sprite, AI } from '../components/singleValue';
+import { Sprite, AI, Slot, Cursor } from '../components/singleValue';
 
 // Returns a PIXI.Container with all the sprites and objects loaded from the Tiled Map
 export function loadTiledMap(textures, mapData) {
@@ -54,16 +55,21 @@ export function loadTiledMap(textures, mapData) {
         }
         else if (obj.type === mapTypes.sprite) {
           entity = createSpriteEntity(textures, mapObject);
-          console.log('sprite entity', entity.getComponent(Sprite).value)
-          // console.log('Sprite object entity', mapObject);
-          // entity = world.createEntity()
-          //   .addComponent(Sprite, {value: createTiledSprite(textures, mapObject.tiledID)})
+        }
+        else if (obj.type === mapTypes.rect) {
+          entity = createRectEntity(mapObject);
         }
 
         //
         // Add Components defiend in the map data
         if (mapObject.AI) {
           entity.addComponent(AI, {value: mapObject.AI});
+        }
+        if (mapObject.slot) {
+          entity.addComponent(Slot, {value: mapObject.slot});
+        }
+        if (mapObject.cursor) {
+          entity.addComponent(Cursor, {value: mapObject.cursor});
         }
       });
     }

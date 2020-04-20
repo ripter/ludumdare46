@@ -26,35 +26,31 @@ export class PlayerInputSystem extends System {
   handleEvent(event) {
     // Skip if we have no place to store the data.
     if (!this.inputState) { return; }
+    const isDown = (event.type === 'keydown') ? true : false;
 
     const {velocity} = this;
     switch (event.code) {
       case 'KeyD':
       case 'ArrowRight':
-        this.inputState.MoveRight = (event.type === 'keydown') ? true : false;
+        this.inputState.MoveRight = isDown;
         break;
       case 'KeyA':
       case 'ArrowLeft':
-        this.inputState.MoveLeft = (event.type === 'keydown') ? true : false;
+        this.inputState.MoveLeft = isDown;
         break;
       case 'KeyW':
       case 'ArrowUp':
-        this.inputState.MoveUp = (event.type === 'keydown') ? true : false;
+        this.inputState.MoveUp = isDown;
         break;
       case 'KeyS':
       case 'ArrowDown':
-        this.inputState.MoveDown = (event.type === 'keydown') ? true : false;
+        this.inputState.MoveDown = isDown;
         break;
       case 'Escape':
-        this.inputState.MainMenu = (event.type === 'keydown') ? true : false;
-        // if (event.type === 'keyup') {
-        //   if (player.hasComponent(Dialog)) {
-        //     player.removeComponent(Dialog);
-        //   }
-        //   else {
-        //     player.addComponent(Dialog, {value: 'menu'});
-        //   }
-        // }
+        this.inputState.Cancel = isDown;
+      case 'Enter':
+      case 'Space':
+        this.inputState.Confirm = isDown;
         break;
       default:
         console.log('key code', event.code);

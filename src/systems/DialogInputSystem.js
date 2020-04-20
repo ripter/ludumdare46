@@ -1,33 +1,54 @@
 import { System, Not } from 'ecsy';
 
 import { Input } from '../components/Input';
-import { Timeout, Cursor } from '../components/singleValue';
+import { Timeout, Cursor, Dialog } from '../components/singleValue';
 
 export class DialogInputSystem extends System {
-  init() {
-    console.log('DialogInputSystem');
-  }
   execute(delta) {
+    const dialogEntity = this.queries.dialog.results[0];
     const inputEntity = this.queries.input.results[0];
-    if (!inputEntity) { return; }
+    if (!inputEntity || !dialogEntity) { return; }
     const inputState = inputEntity.getComponent(Input);
-    let didAction = false;
+    let tookAction = false;
 
-    // console.log('Dialog Input System', inputState);
     if (inputState.MoveRight) {
-      console.log('Move Right!');
-      didAction = true;
+      this.moveCursor(1);
+      tookAction = true;
     }
     else if (inputState.MoveLeft) {
-      console.log('Left Right!');
-      didAction = true;
+      this.moveCursor(-1);
+      tookAction = true;
+    }
+    else if (inputState.Cancel) {
+      dialogEntity.removeComponent(Dialog);
+      tookAction = true;
+    }
+    else if (inputState.Confirm) {
+      console.log('Keep going!');
+      tookAction = true;
     }
 
-    if (didAction) {
-      console.log('Timeout!')
-      // Timeout the input, no one will be able to read from it during the timeout.
-      inputEntity.addComponent(Timeout, {value: 50});
+    // Timeout to give the user time to react
+    if (tookAction) {
+      inputEntity.addComponent(Timeout, {value: 30});
     }
+  }
+  // Moves the Cursor into a new slot index by delta
+  moveCursor(delta) {
+    if (this.queries.cursor.results.length === 0) { return; }
+    const inputEntity = this.queries.input.results[0];
+    const cursorEntity = this.queries.cursor.results[0];
+    const currentSlot = parseInt(cursorEntity.getComponent(Cursor).value, 10);
+    let newSlot = currentSlot + delta;
+
+    if (newSlot > 1) {
+      newSlot = 0;
+    }
+    else if (newSlot < 0) {
+      newSlot = 1;
+    }
+
+    cursorEntity.getMutableComponent(Cursor).value =  ''+newSlot;
   }
 }
 DialogInputSystem.queries = {
@@ -37,4 +58,7 @@ DialogInputSystem.queries = {
   cursor: {
     components: [Cursor],
   },
+  dialog: {
+    components: [Dialog],
+  }
 }

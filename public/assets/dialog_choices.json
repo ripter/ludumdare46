@@ -33,6 +33,11 @@
                  "name":"indicator",
                  "properties":[
                         {
+                         "name":"cursor",
+                         "type":"string",
+                         "value":"0"
+                        }, 
+                        {
                          "name":"tiledID",
                          "type":"string",
                          "value":"20"

@@ -16,6 +16,7 @@
  <objectgroup id="2" name="objects">
   <object id="1" name="indicator" type="sprite" x="0" y="48" width="16" height="16">
    <properties>
+    <property name="cursor" value="0"/>
     <property name="tiledID" value="20"/>
    </properties>
   </object>

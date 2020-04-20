@@ -1,27 +1,40 @@
 import { System } from 'ecsy';
 
 import { pixi } from '../singletons/pixi';
-import { Dialog } from '../components/singleValue';
+import { Dialog, Cursor, Slot, Sprite, Rect } from '../components/singleValue';
 
 export class DialogSystem  extends System {
   execute(delta) {
-    const dialogMap = pixi.stage.getChildByName('dialogMap');
+    // Keep the cursor in the right slot.
+    this.queries.cursor.added.forEach(entity => this.moveToSlot(entity));
+    this.queries.cursor.changed.forEach(entity => this.moveToSlot(entity));
 
-    this.queries.openWindows.added.forEach(entity => {
-      console.log('Dialog Added')
-      // dialogMap.visible = true;
-    });
-    this.queries.openWindows.removed.forEach(entity => {
-      console.log('Dialog removed');
-      // dialogMap.visible = false;
-    });
-    this.queries.openWindows.results.forEach(entity => {
-      // console.log('OPen dialog')
-    });
+    // Show/Hide
+  }
+
+  moveToSlot(cursorEntity) {
+    const sprite = cursorEntity.getComponent(Sprite).value;
+    const newSlotIndex = cursorEntity.getComponent(Cursor).value;
+    const slotEntity = this.queries.slots.results.find(eSlot => eSlot.getComponent(Slot).value === newSlotIndex);
+
+    if (!slotEntity) { console.error(`No Slot with ID ${newSlotIndex} found.`); return; }
+
+    const slotRect = slotEntity.getComponent(Rect).value;
+    sprite.position.set(slotRect.x, slotRect.y);
   }
 }
 DialogSystem.queries = {
-  openWindows: {
+  cursor: {
+    components: [Cursor, Sprite],
+    listen: {
+      changed: true,
+      added: true,
+    },
+  },
+  slots: {
+    components: [Slot],
+  },
+  dialog: {
     components: [Dialog],
     listen: {
       added: true,

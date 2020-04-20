@@ -24,3 +24,5 @@ export class Dialog extends SingleValueComponent {}
 export class Focus extends SingleValueComponent {}
 export class FollowPlayer extends SingleValueComponent {}
 export class Cursor extends SingleValueComponent {}
+export class Rect extends SingleValueComponent {}
+export class Slot extends SingleValueComponent {}

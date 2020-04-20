@@ -17,10 +17,10 @@ import { DialogInputSystem } from '../systems/DialogInputSystem';
 // ECSY World
 // Register all the systems in order.
 export const world = window.world = new World()
-  // .registerSystem(DialogSystem)
   .registerSystem(WindowSystem)
   .registerSystem(DialogInputSystem)
   .registerSystem(MapInputSystem)
+  .registerSystem(DialogSystem)
   .registerSystem(AISystem)
   .registerSystem(PlayerInputSystem)
   .registerSystem(CollisionSystem)
