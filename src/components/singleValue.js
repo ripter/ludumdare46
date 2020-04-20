@@ -16,15 +16,17 @@ class SingleValueComponent extends Component {
   }
 }
 
-export class Player extends SingleValueComponent {}
-export class Sprite extends SingleValueComponent {}
 export class AI extends SingleValueComponent {}
-export class Timeout extends SingleValueComponent {}
 export class Collider extends SingleValueComponent {}
-export class Text extends SingleValueComponent {}
+export class Cursor extends SingleValueComponent {}
 export class Dialog extends SingleValueComponent {}
 export class Focus extends SingleValueComponent {}
 export class FollowPlayer extends SingleValueComponent {}
-export class Cursor extends SingleValueComponent {}
+export class Player extends SingleValueComponent {}
 export class Rect extends SingleValueComponent {}
 export class Slot extends SingleValueComponent {}
+export class Sprite extends SingleValueComponent {}
+export class Text extends SingleValueComponent {}
+export class Timeout extends SingleValueComponent {}
+export class DialogWindow extends SingleValueComponent {}
+export class MapWindow extends SingleValueComponent {}

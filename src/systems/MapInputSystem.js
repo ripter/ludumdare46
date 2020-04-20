@@ -28,7 +28,7 @@ export class MapInputSystem extends System {
 
     if (inputState.MenuToggle) {
       console.log('Map Input, Menu Toggle');
-      playerEntity.addComponent(Dialog, { value: 'menu' });
+      playerEntity.addComponent(Dialog, { value: 'dialog_menu' });
       tookAction = true;
     }
 

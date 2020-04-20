@@ -1,21 +1,18 @@
 import * as PIXI from 'pixi.js';
 
 import { createMobEntity } from './entities/createMobEntity';
-// import { Follow } from './components/Follow';
+import { Dialog, DialogWindow, Focus, FollowPlayer, Player, Sprite } from './components/singleValue';
+import { DialogInputSystem } from './systems/DialogInputSystem';
+import { Input } from './components/Input';
 import { loadDialogMap } from './utils/loadDialogMap';
 import { loadTiledMap } from './utils/loadTiledMap';
+import { MapInputSystem } from './systems/MapInputSystem';
 import { pixi } from './singletons/pixi';
 import { sliceTexture } from './utils/sliceTexture';
-import {
-  Sprite, Player, Dialog, Focus, FollowPlayer,
-} from './components/singleValue';
 import { Velocity } from './components/Velocity';
 import { Window } from './components/Window';
 import { world } from './singletons/world';
-// import { PlayerInputSystem } from
-import { MapInputSystem } from './systems/MapInputSystem';
-import { DialogInputSystem } from './systems/DialogInputSystem';
-import { Input } from './components/Input';
+
 
 export function startGame() {
   const { resources } = pixi.loader;
@@ -44,6 +41,7 @@ export function startGame() {
       name: 'dialog',
       systems: [DialogInputSystem],
     })
+    .addComponent(DialogWindow, {})
     .addComponent(Sprite, {
       value: loadDialogMap(uiSet, resources.ui_map.data, resources.ui_choices_map.data),
     })
@@ -60,7 +58,7 @@ export function startGame() {
     parent: mapSprite,
   })
     .addComponent(Player, {})
-    .addComponent(Dialog, { value: 'menu' });
+    .addComponent(Dialog, { value: 'dialog_menu' });
 
 
   // Start the Game loop.
