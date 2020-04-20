@@ -102,6 +102,7 @@
   <object id="2" name="Janet" type="mob" x="320" y="208" width="16" height="16">
    <properties>
     <property name="AI" value="simple"/>
+    <property name="hasDialog" value="dialog_janet"/>
     <property name="resourceID" value="girl_bow"/>
    </properties>
   </object>

@@ -1,8 +1,9 @@
 import { System } from 'ecsy';
 
 import { Velocity } from '../components/Velocity';
-import { Collider, Sprite } from '../components/singleValue';
+import { Collider, Sprite, HasDialog } from '../components/singleValue';
 import { intersect, spriteToBBox, spriteVelocityToBBox } from '../utils/intersect';
+import { Dialog } from '../components/Dialog';
 
 // AABB Collision detection
 function doesIntersect(collider, collidable) {
@@ -24,6 +25,14 @@ export class CollisionSystem extends System {
 
         if (isColliding) {
           collider.getMutableComponent(Velocity).reset();
+
+          // Does the collidable want to talk?
+          if (collidable.hasComponent(HasDialog)) {
+            const dialogID = collidable.getComponent(HasDialog).value;
+            collidable.addComponent(Dialog, {
+              resourceID: dialogID,
+            });
+          }
         }
       });
     });

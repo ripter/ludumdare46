@@ -89,6 +89,11 @@
                          "value":"simple"
                         }, 
                         {
+                         "name":"hasDialog",
+                         "type":"string",
+                         "value":"dialog_janet"
+                        }, 
+                        {
                          "name":"resourceID",
                          "type":"string",
                          "value":"girl_bow"

@@ -1,9 +1,8 @@
+import { AISystem } from './systems/AISystem';
 import { createMobEntity } from './entities/createMobEntity';
 import { Dialog } from './components/Dialog';
 import { DialogInputSystem } from './systems/DialogInputSystem';
-import {
-  DialogWindow, Focus, FollowPlayer, Player, Sprite,
-} from './components/singleValue';
+import { DialogWindow, Focus, FollowPlayer, Player, Sprite } from './components/singleValue';
 import { Input } from './components/Input';
 import { loadDialogMap } from './utils/loadDialogMap';
 import { loadTiledMap } from './utils/loadTiledMap';
@@ -29,7 +28,7 @@ export function startGame() {
   const windowMap = world.createEntity()
     .addComponent(Window, {
       name: 'map',
-      systems: [MapInputSystem],
+      systems: [MapInputSystem, AISystem],
     })
     .addComponent(FollowPlayer)
     .addComponent(Sprite, {

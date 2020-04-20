@@ -13,4 +13,5 @@ pixi.loader
   .add('world_map', 'assets/world_map.json')
   .add('dialog_menu', 'dialog/menu.json')
   .add('dialog_kimchi', 'dialog/kimchi.json')
+  .add('dialog_janet', 'dialog/janet.json')
   .load(startGame);

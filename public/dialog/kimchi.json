@@ -1,1 +1,1 @@
-﻿{"inkVersion":19,"root":[["^You know why they call me Kimchi?","\n","^Because I'm 🌶HOT🌶","\n",["end",["done",{"#f":5,"#n":"g-1"}],{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}
+﻿{"inkVersion":19,"root":[["^You know why they call me Kimchi?","\n","^Because I'm HOT!","\n","ev","str","^... uh sure","/str","/ev",{"*":"0.c-0","flg":4},"ev","str","^I know it!","/str","/ev",{"*":"0.c-1","flg":4},{"c-0":["\n",{"->":"0.g-0"},{"#f":5}],"c-1":["\n",{"->":"0.g-0"},{"#f":5}],"g-0":["end",["done",{"#f":5,"#n":"g-1"}],{"#f":5}]}],"done",{"#f":1}],"listDefs":{}}
