@@ -6,6 +6,7 @@ import { CollisionSystem } from '../systems/CollisionSystem';
 import { DialogInputSystem } from '../systems/DialogInputSystem';
 import { DialogSystem } from '../systems/DialogSystem';
 import { FollowSystem } from '../systems/FollowSystem';
+import { GameoverSystem } from '../systems/GameoverSystem';
 import { MapInputSystem } from '../systems/MapInputSystem';
 import { MovementSystem } from '../systems/MovementSystem';
 import { PlayerInputSystem } from '../systems/PlayerInputSystem';
@@ -25,4 +26,5 @@ export const world = window.world = new World()
   .registerSystem(AnimationSystem)
   .registerSystem(MovementSystem)
   .registerSystem(TimeoutSystem)
-  .registerSystem(FollowSystem);
+  .registerSystem(FollowSystem)
+  .registerSystem(GameoverSystem);

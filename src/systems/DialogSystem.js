@@ -2,7 +2,7 @@ import { System } from 'ecsy';
 import { Story } from 'inkjs';
 
 import {
-  Cursor, DialogOptionPicked, Player, Rect, Slot, Sprite, Text
+  Cursor, DialogOptionPicked, HasDialog, OneTimeDialog, Player, Rect, Slot, Sprite, Text
 } from '../components/singleValue';
 import { Dialog } from '../components/Dialog';
 import { pixi } from '../singletons/pixi';
@@ -45,8 +45,15 @@ export class DialogSystem extends System {
 
     // No message or choices, means the story is over. close it down.
     if (!canContinue && choices.length === 0 && message === '') {
-      entity.removeComponent(Dialog);
+      this.closeDialog(entity);
     }
+  }
+
+  closeDialog(entity) {
+    if (entity.hasComponent(OneTimeDialog)) {
+      entity.removeComponent(HasDialog);
+    }
+    entity.removeComponent(Dialog);
   }
 
   pickChoice(entity) {
@@ -61,7 +68,7 @@ export class DialogSystem extends System {
     }
     // Clicked when there are no choices. aka end of story
     else {
-      entity.removeComponent(Dialog);
+      this.closeDialog(entity);
     }
 
     // we handled the option, so we can remove the component.

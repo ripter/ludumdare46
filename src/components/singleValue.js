@@ -32,3 +32,5 @@ export class Slot extends SingleValueComponent {}
 export class Sprite extends SingleValueComponent {}
 export class Text extends SingleValueComponent {}
 export class Timeout extends SingleValueComponent {}
+export class OneTimeDialog extends SingleValueComponent {}
+export class HasAlternateDialog extends SingleValueComponent {}

@@ -26,21 +26,17 @@ export class WindowSystem extends System {
     });
 
     // Switch Focus when the Popup is added/removed.
-    dialog.added.forEach(() => {
-      const dialogWindow = this.findWindowByName('dialog');
-      const dialogContainer = dialogWindow.getComponent(Sprite).value;
+    const dialogWindow = this.findWindowByName('dialog');
+    const dialogContainer = dialogWindow.getComponent(Sprite).value;
 
+    if (dialog.results.length > 0) {
       this.setFocusOnWindow(dialogWindow);
       dialogContainer.visible = true;
-    });
-    dialog.removed.forEach(() => {
-      const dialogWindow = this.findWindowByName('dialog');
-      const dialogContainer = dialogWindow.getComponent(Sprite).value;
-      const mapWindow = this.findWindowByName('map');
-
-      this.setFocusOnWindow(mapWindow);
+    }
+    else {
+      this.setFocusOnWindow(this.findWindowByName('map'));
       dialogContainer.visible = false;
-    });
+    }
   }
 
   findWindowByName(name) {
