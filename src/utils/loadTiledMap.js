@@ -1,7 +1,8 @@
 import * as PIXI from 'pixi.js';
 
+import { AI } from '../components/AI';
 import {
-  AI, Collider, Cursor, HasAlternateDialog, HasDialog, OneTimeDialog, Slot
+  Collider, Cursor, HasAlternateDialog, HasDialog, OneTimeDialog, Slot,
 } from '../components/singleValue';
 import { createColliderEntity } from '../entities/createColliderEntity';
 import { createMapObject } from './createMapObject';
@@ -62,7 +63,7 @@ export function loadTiledMap(textures, mapData) {
         }
         else if (obj.type === mapTypes.collider) {
           entity = createSpriteEntity(textures, mapObject)
-            .addComponent(Collider, {})
+            .addComponent(Collider, {});
         }
 
         //
@@ -83,7 +84,7 @@ export function loadTiledMap(textures, mapData) {
           entity.addComponent(OneTimeDialog, {});
         }
         if (mapObject.hasAlternateDialog) {
-          entity.addComponent(HasAlternateDialog, {value: mapObject.hasAlternateDialog})
+          entity.addComponent(HasAlternateDialog, { value: mapObject.hasAlternateDialog });
         }
       });
     }

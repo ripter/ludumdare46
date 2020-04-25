@@ -1,8 +1,8 @@
-import { System, Not } from 'ecsy';
+import { System } from 'ecsy';
 
 import { Dialog } from '../components/Dialog';
 import { Input } from '../components/Input';
-import { Player, Timeout } from '../components/singleValue';
+import { Player } from '../components/singleValue';
 import { Velocity } from '../components/Velocity';
 
 export class MapInputSystem extends System {

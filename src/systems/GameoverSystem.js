@@ -7,20 +7,21 @@ export class GameoverSystem extends System {
   init() {
     this.pendingDialog = [];
   }
+
   execute() {
     const entity = this.queries.player.results[0];
     const player = entity.getComponent(Player).value;
     let didMutate = false;
 
-    if (player.bonus == 2 && !player._bonusCalled) {
+    if (player.bonus === 2 && !player._bonusCalled) {
       player._bonusCalled = true;
       didMutate = true;
-      this.pendingDialog.push({resourceID: 'dialog_awesome'});
+      this.pendingDialog.push({ resourceID: 'dialog_awesome' });
     }
     else if (player.won && !player._wonCalled) {
       player._wonCalled = true;
       didMutate = true;
-      this.pendingDialog.push({resourceID: 'dialog_win'});
+      this.pendingDialog.push({ resourceID: 'dialog_win' });
     }
     else if (player.toner === 3 && !player._tonerCalled) {
       player._tonerCalled = true;
@@ -39,7 +40,6 @@ export class GameoverSystem extends System {
     if (this.pendingDialog.length > 0 && this.queries.openDialog.results.length === 0) {
       entity.addComponent(Dialog, this.pendingDialog.pop());
     }
-
   }
 }
 GameoverSystem.queries = {
@@ -52,4 +52,4 @@ GameoverSystem.queries = {
   goal: {
     components: [HasAlternateDialog],
   },
-}
+};

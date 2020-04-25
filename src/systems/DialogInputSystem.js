@@ -1,7 +1,7 @@
-import { System, Not } from 'ecsy';
+import { System } from 'ecsy';
 
 import { Input } from '../components/Input';
-import { Timeout, Cursor, DialogOptionPicked } from '../components/singleValue';
+import { Cursor, DialogOptionPicked } from '../components/singleValue';
 import { Dialog } from '../components/Dialog';
 
 export class DialogInputSystem extends System {

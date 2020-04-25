@@ -53,3 +53,32 @@ Running a performance test using `waitUntil`
 Wow, that almost cut the Scripting time in half!
 
 Will this improvement continue if we completely remove `Timeout` and the `TimeoutSystem`?
+
+Grep shows me that the only system left using `Timeout` is the `AISystem`. It's also using the `Timeout` as a way to debounce simulated inputs. The same timestamp method will work here just as well as it did in the Input system. In fact, the `AISystem` is really the AI Input System. The big difference is that the `AISystem` does not update the player's `Input` component. Instead it reads and updates an `AI` component.
+
+In order to make the same `waitUntil` change I made with the player Input, I need a place to store the `waitUntil` value. The existing `AI` component only holds a single value. So to make this change, I'll need to upgrade it first.
+
+```
+export class AI extends Component {
+  constructor() {
+    super();
+    this.reset();
+  }
+
+  reset() {
+    this.value = '';
+    this.waitUntil = 0;
+  }
+
+  set(obj) {
+    this.value = obj.value;
+    this.waitUntil = obj.waitUntil;
+  }
+}
+```
+
+
+![No Timeout system](./noTimeout.png)
+
+
+Well Dang, that was not the effect I expected. So either I'm measuring wrong, or removing `Timeout` didn't have as big of an effect as I thought.

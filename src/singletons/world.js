@@ -10,7 +10,6 @@ import { GameoverSystem } from '../systems/GameoverSystem';
 import { MapInputSystem } from '../systems/MapInputSystem';
 import { MovementSystem } from '../systems/MovementSystem';
 import { PlayerInputSystem } from '../systems/PlayerInputSystem';
-import { TimeoutSystem } from '../systems/TimeoutSystem';
 import { WindowSystem } from '../systems/WindowSystem';
 
 // ECSY World
@@ -25,6 +24,5 @@ export const world = window.world = new World()
   .registerSystem(CollisionSystem)
   .registerSystem(AnimationSystem)
   .registerSystem(MovementSystem)
-  .registerSystem(TimeoutSystem)
   .registerSystem(FollowSystem)
   .registerSystem(GameoverSystem);

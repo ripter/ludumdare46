@@ -1,11 +1,11 @@
-import { System, Not } from 'ecsy';
+import { System } from 'ecsy';
 
+import { AI } from '../components/AI';
 import { AI as AIType } from '../consts/ai';
+import { Dialog } from '../components/Dialog';
 import { DIRECTION_LIST } from '../consts/direction';
 import { Mob } from '../components/Mob';
 import { Velocity } from '../components/Velocity';
-import { AI, Timeout } from '../components/singleValue';
-import { Dialog } from '../components/Dialog';
 import { velocityFromDirection } from '../utils/velocityFromDirection';
 
 
@@ -34,29 +34,30 @@ function crazySpin(entity) {
 
 
 export class AISystem extends System {
-  execute() {
+  execute(delta, time) {
     this.queries.npcs.results.forEach((entity) => {
-      const { speed } = entity.getComponent(Mob);
       const isTalking = entity.hasComponent(Dialog);
-      const ai = entity.getComponent(AI).value;
+      const ai = entity.getMutableComponent(AI);
+      if (ai.waitUntil > time) { return; }
+
       // Talking NPCs shouldn't move.
       if (isTalking) {
         entity.getMutableComponent(Velocity).set({ x: 0, y: 0 });
       }
       // Move based on AI type
-      else if (ai === AIType.simple) {
+      else if (ai.value === AIType.simple) {
         simpleMove(entity);
       }
-      else if (ai === AIType.crazySpin) {
+      else if (ai.value === AIType.crazySpin) {
         crazySpin(entity);
       }
 
-      entity.addComponent(Timeout, { value: speed * 13 });
+      ai.waitUntil = time + 300;
     });
   }
 }
 AISystem.queries = {
   npcs: {
-    components: [AI, Mob, Velocity, Not(Timeout)],
+    components: [AI, Mob, Velocity],
   },
 };

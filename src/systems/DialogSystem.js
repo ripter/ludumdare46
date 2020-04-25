@@ -2,7 +2,7 @@ import { System } from 'ecsy';
 import { Story } from 'inkjs';
 
 import {
-  Cursor, DialogOptionPicked, HasDialog, OneTimeDialog, Player, Rect, Slot, Sprite, Text
+  Cursor, DialogOptionPicked, HasDialog, OneTimeDialog, Player, Rect, Slot, Sprite, Text,
 } from '../components/singleValue';
 import { Dialog } from '../components/Dialog';
 import { pixi } from '../singletons/pixi';
@@ -101,13 +101,12 @@ export class DialogSystem extends System {
     const entity = this.queries.player.results[0];
     const player = entity.getComponent(Player).value || {};
 
-    tags.forEach(tag => {
-      if (!player[tag]) { player[tag] = 0;}
+    tags.forEach((tag) => {
+      if (!player[tag]) { player[tag] = 0; }
       player[tag] += 1;
     });
 
     entity.getMutableComponent(Player).value = player;
-    console.log('new tags', entity.getComponent(Player).value);
   }
 }
 DialogSystem.queries = {
