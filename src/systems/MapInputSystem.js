@@ -6,12 +6,15 @@ import { Player, Timeout } from '../components/singleValue';
 import { Velocity } from '../components/Velocity';
 
 export class MapInputSystem extends System {
-  execute() {
+  execute(delta, time) {
     const inputEntity = this.queries.input.results[0];
     const playerEntity = this.queries.player.results[0];
     // Skip if either is missing.
     if (!inputEntity || !playerEntity) { return; }
-    const inputState = inputEntity.getComponent(Input);
+    const inputState = inputEntity.getMutableComponent(Input);
+    // Skip if we are waiting
+    if (inputState.waitUntil > time) { return; }
+
     const velocity = playerEntity.getMutableComponent(Velocity);
     let tookAction = false;
 
@@ -32,13 +35,13 @@ export class MapInputSystem extends System {
 
     // Timeout to give the user time to react
     if (tookAction) {
-      inputEntity.addComponent(Timeout, { value: 30 });
+      inputState.waitUntil = time + 300;
     }
   }
 }
 MapInputSystem.queries = {
   input: {
-    components: [Input, Not(Timeout)],
+    components: [Input],
   },
   player: {
     components: [Player],

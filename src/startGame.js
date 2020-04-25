@@ -64,6 +64,6 @@ export function startGame() {
   // Start the Game loop.
   // Use Pixi's ticker for the game loop.
   pixi.ticker.add((delta) => {
-    world.execute(delta);
+    world.execute(delta, performance.now());
   });
 }

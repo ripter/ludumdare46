@@ -7,6 +7,7 @@ export class Input extends Component {
   }
 
   reset() {
+    this.waitUntil = 0;
   }
 
   // set(obj) {

@@ -5,11 +5,13 @@ import { Timeout, Cursor, DialogOptionPicked } from '../components/singleValue';
 import { Dialog } from '../components/Dialog';
 
 export class DialogInputSystem extends System {
-  execute() {
+  execute(delta, time) {
     const dialogEntity = this.queries.dialog.results[0];
     const inputEntity = this.queries.input.results[0];
     if (!inputEntity || !dialogEntity) { return; }
-    const inputState = inputEntity.getComponent(Input);
+    const inputState = inputEntity.getMutableComponent(Input);
+    // Skip if we are waiting
+    if (inputState.waitUntil > time) { return; }
     let tookAction = false;
 
     if (inputState.MoveRight) {
@@ -33,7 +35,7 @@ export class DialogInputSystem extends System {
 
     // Timeout to give the user time to react
     if (tookAction) {
-      inputEntity.addComponent(Timeout, { value: 10 });
+      inputState.waitUntil = time + 300;
     }
   }
 
@@ -61,7 +63,7 @@ export class DialogInputSystem extends System {
 }
 DialogInputSystem.queries = {
   input: {
-    components: [Input, Not(Timeout)],
+    components: [Input],
   },
   cursor: {
     components: [Cursor],

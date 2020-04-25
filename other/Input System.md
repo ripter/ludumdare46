@@ -23,6 +23,33 @@ When one of the subsystems, `MapInputSystem` or `DialogInputSystem` handle the u
 
 
 
-
 ## What are the issues with this design?
-It feels strange that the `Dialog` component results in controlling which systems are enabled or disabled. but at the same time, it seems fine that the `WindowSystem` is managing window focus, and which systems should receive input.
+
+Using the `Timeout` component to debounce the input was an interesting experiment, but I think it is too in efficient. I could get the same result with a timestamp. I'm not sure on the exact cost, but a timestamp should be an O(1) operation while adding and removing `Timeout` is probably much higher.
+
+
+That means instead of
+```
+// Timeout to give the user time to react
+if (tookAction) {
+  inputEntity.addComponent(Timeout, { value: 30 });
+}
+```
+
+Instead I could do
+```
+  inputState.waitUntil = time + 300;
+```
+
+
+Running a performance test using `Timeout`
+
+![with timeout](./withInputTimeout.png)
+
+Running a performance test using `waitUntil`
+
+![withtout timeout](./withoutInputTimeout.png)
+
+Wow, that almost cut the Scripting time in half!
+
+Will this improvement continue if we completely remove `Timeout` and the `TimeoutSystem`?
