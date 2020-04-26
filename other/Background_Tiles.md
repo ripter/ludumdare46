@@ -29,3 +29,14 @@ if (layer.type !== 'tilelayer') {
 ```
 
 ![ParticleContainer](./base_performance_particle_container.png)
+
+And zoomed in we can seed the total time went from 6ms to 1ms! That looks like an awesome improvement with just a few lines of code.
+![Zoomed ParticleContainer](./base_performance_particle_container_zoomed.png)
+
+I wish I could call it a day and say we added 5x performance increase, but closer testing reveals several new bugs. Like large parts of the map are blank!
+
+![Bug](./particle_container_bug.png)
+
+
+## Render texture
+[PIXI.RenderTexture](./http://pixijs.download/release/docs/PIXI.RenderTexture.html) looks like promising route. Instead of keeping all 15k sprites, we can render them into a new single texture.
