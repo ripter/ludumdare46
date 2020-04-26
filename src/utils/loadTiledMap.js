@@ -94,12 +94,7 @@ export function loadTiledMap(textures, mapData) {
     // When the layer is just tile images, merge them into a single sprite.
     if (layer.type === 'tilelayer') {
       // Merge the tiles into a single Sprite
-      // map.addChild(mergeSprites(container));
-      const mergedSprite = mergeSprites(container);
-      mergedSprite.position.set(10, 10);
-      // map.addChild(container);
-      console.log('mergedSprite', mergedSprite);
-      map.addChild(mergedSprite);
+      map.addChild(mergeSprites(container));
     }
     else {
       map.addChild(container);

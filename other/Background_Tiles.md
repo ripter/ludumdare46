@@ -1,16 +1,16 @@
 # Sprite and Tile Performance
 
-First thing is first, I need to get a sample of base performance. In this test I do nothing but close the opening dialog.
+First thing first, I need to get a sample of base performance. In this test, I do nothing.  I just let the profiler refresh the page and record a few seconds.
 
 ![Baseline](./base_5s_performance.png)
 
-This version creates over 15,749 sprites! There are only two texture sheets, but even with that advantage, that is a lot of sprites for PIXI to render and transform. In fact, if we dig into the call stack in the performance log, we see that applyTransform is called a lot. And yet, with all this it's only taking 6ms each frame!
+This version creates over 15,749 sprites! There are only two texture sheets, but even with that advantage, that is a lot of sprites for PIXI to render and transform. If we dig into the call stack in the performance log, we see that applyTransform is called a lot. And yet, with all this it's only taking 6ms each frame!
 
 ![Zoomed in baseline](./base_performance_zoomed.png)
 
 So why even bother? PIXI.JS has a great performance without us having to do anything.
 
-Despite the amazing performance, I still get visual bug like this:
+Despite the amazing performance, I still get a visual bug like this:
 ![Grid Bug](./visual_grid_bug.png)
 
 
@@ -33,7 +33,7 @@ if (layer.type !== 'tilelayer') {
 And zoomed in we can seed the total time went from 6ms to 1ms! That looks like an awesome improvement with just a few lines of code.
 ![Zoomed ParticleContainer](./base_performance_particle_container_zoomed.png)
 
- I wish I could call it a day and say we added 5x performance increase, but closer testing reveals several new bugs. Like large parts of the map are blank! So as quick fix, ParticleContainer is not going to work in this case.
+ I wish I could call it a day and say we added a 5x performance increase, but closer testing reveals several new bugs. Like large parts of the map are blank! So as a quick fix, ParticleContainer is not going to work in this case.
 
 ![Bug](./particle_container_bug.png)
 
@@ -41,11 +41,11 @@ And zoomed in we can seed the total time went from 6ms to 1ms! That looks like a
 
 
 ## Render texture
-[PIXI.RenderTexture](./http://pixijs.download/release/docs/PIXI.RenderTexture.html) looks like promising route. Instead of keeping all 15k sprites, we can render them into a new single texture. This would turn 5225 * 3 sprites into 3 sprites. It would mean that instead of transforming 15,675 sprites, it would only need to transform 3 sprites.
+[PIXI.RenderTexture](./http://pixijs.download/release/docs/PIXI.RenderTexture.html) looks like a promising route. Instead of keeping all 15k sprites, we can render them into a new single texture. This would turn 5225 * 3 sprites into 3 sprites. It would mean that instead of transforming 15,675 sprites, it would only need to transform 3 sprites.
 
 I will turn each `tilelayer` into a single image.
 
-Why not pre-render the tile images and then load those? We could! It doesn't really matter where the conversion between 15,675 tiles to 3 images take place. I want the quick test cycle without tooling (because I don't have any tooling). So doing the conversion when the Tiled map is loaded makes sense for this project. If I had an artist that could quickly create the final images, then I would use that route. But considering it's just me, dynamic generation is the best option.
+Why not pre-render the tile images and then load those? We could! It doesn't matter where the conversion between 15,675 tiles to 3 images takes place. I want the quick test cycle without tooling (because I don't have any tooling). So doing the conversion when the Tiled map is loaded makes sense for this project. If I had an artist that could quickly create the final images, then I would use that route. But considering it's just me, dynamic generation is the best option.
 
 ```
 if (layer.type === 'tilelayer') {
@@ -66,7 +66,7 @@ if (layer.type === 'tilelayer') {
 
 I have a few options on how to refactor and upgrade the code to use the Render Texture. First I need a function to create the new texture. I'll call it `mergeSprites`. It should return a single sprite using the RenderTexture. But what arguments should it take? An array of Sprites? A Container? Two sprites, one for output and one for input?
 
-Looking at the existing code, gives us a few ideas on what arguments I have available. Taking a single Container looks the easiest. I could leave most of the code alone, and just add a few new lines at the end.
+Looking at the existing code gives us a few ideas on what arguments I have available. Taking a single Container looks the easiest. I could leave most of the code alone, and just add a few new lines at the end.
 
 ```
 // When the layer is just tile images, merge them into a single sprite.
@@ -81,5 +81,8 @@ else {
 
 
 
-And with the change:
+And with the change, we get the same great speed increase we saw with the ParticleContainer, but without the issues! This looks like a win.
+
 ![RenderTexture](./render_texture_zoomed.png)
+
+![Results](./render_texture_base_performance.png)
