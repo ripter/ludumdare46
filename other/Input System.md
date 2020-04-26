@@ -1,4 +1,4 @@
-# Input System
+# ECSY Input System in my LDJam 46 Game
 
 The goal of the Input system is to translate raw input into a standard format that other systems and utilities can use.
 

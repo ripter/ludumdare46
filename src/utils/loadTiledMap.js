@@ -24,8 +24,13 @@ export function loadTiledMap(textures, mapData) {
   // Create a container for each layer
   mapData.layers.forEach((layer) => {
     // Create a container for each layer.
-    const container = new PIXI.Container();
+    // Tile layers should use the ParticleContainer for better performance.
+    let container = new PIXI.ParticleContainer();
+    if (layer.type !== 'tilelayer') {
+      container = new PIXI.Container();
+    }
     container.name = layer.name;
+
 
     // Tile Layers
     if (layer.type === 'tilelayer') {
