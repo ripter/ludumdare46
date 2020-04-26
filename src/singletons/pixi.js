@@ -8,7 +8,7 @@ const VIEW_HEIGHT = 200;
 export const pixi = window.pixi = new PIXI.Application({
   // backgroundColor: 0x419b62,
   backgroundColor: 0x111111,
-  // resolution: window.devicePixelRatio,
+  resolution: window.devicePixelRatio,
   // autoDensity: true,
   view: window.elCanvas,
   width: VIEW_WIDTH,

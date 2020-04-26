@@ -13,6 +13,7 @@ import { createTextEntity } from '../entities/createTextEntity';
 import { createTiledSprite } from './createTiledSprite';
 import { mapLayers } from '../consts/mapLayers';
 import { mapTypes } from '../consts/mapTypes';
+import { mergeSprites } from './mergeSprites';
 
 // Returns a PIXI.Container with all the sprites and objects loaded from the Tiled Map
 export function loadTiledMap(textures, mapData) {
@@ -24,13 +25,8 @@ export function loadTiledMap(textures, mapData) {
   // Create a container for each layer
   mapData.layers.forEach((layer) => {
     // Create a container for each layer.
-    // Tile layers should use the ParticleContainer for better performance.
-    let container = new PIXI.ParticleContainer();
-    if (layer.type !== 'tilelayer') {
-      container = new PIXI.Container();
-    }
+    const container = new PIXI.Container();
     container.name = layer.name;
-
 
     // Tile Layers
     if (layer.type === 'tilelayer') {
@@ -94,7 +90,20 @@ export function loadTiledMap(textures, mapData) {
       });
     }
 
-    map.addChild(container);
+
+    // When the layer is just tile images, merge them into a single sprite.
+    if (layer.type === 'tilelayer') {
+      // Merge the tiles into a single Sprite
+      // map.addChild(mergeSprites(container));
+      const mergedSprite = mergeSprites(container);
+      mergedSprite.position.set(10, 10);
+      // map.addChild(container);
+      console.log('mergedSprite', mergedSprite);
+      map.addChild(mergedSprite);
+    }
+    else {
+      map.addChild(container);
+    }
   });
 
   return map;
