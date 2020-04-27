@@ -95,6 +95,12 @@ export function loadTiledMap(textures, mapData) {
     if (layer.type === 'tilelayer') {
       // Merge the tiles into a single Sprite
       map.addChild(mergeSprites(container));
+      if (container.name !== mapLayers.collision) {
+        // Remove the container and all it's children
+        container.destroy({
+          children: true,
+        });
+      }
     }
     else {
       map.addChild(container);

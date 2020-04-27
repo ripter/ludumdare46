@@ -29,11 +29,11 @@ export class WindowSystem extends System {
     const dialogWindow = this.findWindowByName('dialog');
     const dialogContainer = dialogWindow.getComponent(Sprite).value;
 
-    if (dialog.results.length > 0) {
+    if (dialog.added.length > 0) {
       this.setFocusOnWindow(dialogWindow);
       dialogContainer.visible = true;
     }
-    else {
+    else if (dialog.removed.length > 0) {
       this.setFocusOnWindow(this.findWindowByName('map'));
       dialogContainer.visible = false;
     }

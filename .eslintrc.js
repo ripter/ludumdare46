@@ -29,5 +29,6 @@ module.exports = {
     'prefer-spread': 'off',
     'prefer-destructuring': 'off',
     'no-underscore-dangle': 'off',
+    'new-cap': 'off',
   },
 };
