@@ -26,6 +26,7 @@ export class DialogSystem extends System {
     if (!storyFile) { throw new Error(`Unknown story id: ${resourceID}`); }
     const story = new Story(storyFile);
 
+    console.log('loadStory', resourceID);
     // Set the new story
     entity.getMutableComponent(Dialog).story = story;
     this.renderStory(story, entity);
