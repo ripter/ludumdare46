@@ -2,7 +2,9 @@ import { System } from 'ecsy';
 
 import { Dialog } from '../components/Dialog';
 import { Window } from '../components/Window';
-import { WindowMap, WindowDialog, Focus, Sprite } from '../components/singleValue';
+import {
+  WindowMap, WindowDialog, Focus, Sprite,
+} from '../components/singleValue';
 
 export class WindowSystem extends System {
   execute() {
@@ -69,6 +71,6 @@ WindowSystem.queries = {
     components: [WindowDialog],
   },
   windowsMap: {
-    components: [WindowMap,]
+    components: [WindowMap],
   },
 };

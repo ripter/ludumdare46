@@ -3,7 +3,6 @@ import { Story } from 'inkjs';
 
 import {
   Cursor, DialogOptionPicked, HasDialog, OneTimeDialog, Player, Rect, Slot, Sprite, Text,
-  WindowDialog, Focus,
 } from '../components/singleValue';
 import { Dialog } from '../components/Dialog';
 import { pixi } from '../singletons/pixi';
@@ -19,7 +18,7 @@ export class DialogSystem extends System {
     this.queries.dialog.added.forEach((entity) => {
       this.loadStory(entity);
     });
-    
+
     // When the user picks a choice, continue the story!
     this.queries.pickedChoice.added.forEach((entity) => this.pickChoice(entity));
   }
@@ -30,7 +29,6 @@ export class DialogSystem extends System {
     if (!storyFile) { throw new Error(`Unknown story id: ${resourceID}`); }
     const story = new Story(storyFile);
 
-    console.log('loadStory', resourceID);
     // Set the new story
     entity.getMutableComponent(Dialog).story = story;
     this.renderStory(story, entity);
@@ -144,7 +142,4 @@ DialogSystem.queries = {
   player: {
     components: [Player],
   },
-  windowsDialog: {
-    components: [WindowDialog],
-  }
 };

@@ -29,14 +29,14 @@ export function startGame() {
   //  Window Map
   const mapSprite = loadTiledMap(tileSet, resources.world_map.data);
   pixi.stage.addChild(mapSprite);
-  const windowMap = world.createEntity()
+  world.createEntity()
     .addComponent(Window, {
       systems: [MapInputSystem],
       toggleVisibility: false,
     })
     .addComponent(WindowMap)
     .addComponent(FollowPlayer)
-    .addComponent(Sprite, {value: mapSprite});
+    .addComponent(Sprite, { value: mapSprite });
 
   //
   // Window Dialog
@@ -48,7 +48,7 @@ export function startGame() {
       toggleVisibility: true,
     })
     .addComponent(WindowDialog)
-    .addComponent(Sprite, {value: dialogSprite})
+    .addComponent(Sprite, { value: dialogSprite })
     .addComponent(Focus);
 
 
