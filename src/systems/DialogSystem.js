@@ -3,6 +3,7 @@ import { Story } from 'inkjs';
 
 import {
   Cursor, DialogOptionPicked, HasDialog, OneTimeDialog, Player, Rect, Slot, Sprite, Text,
+  WindowDialog, Focus,
 } from '../components/singleValue';
 import { Dialog } from '../components/Dialog';
 import { pixi } from '../singletons/pixi';
@@ -15,7 +16,10 @@ export class DialogSystem extends System {
     this.queries.cursor.changed.forEach((entity) => this.moveToSlot(entity));
 
     // When dialog is added, create a new Inky Story
-    this.queries.dialog.added.forEach((entity) => this.loadStory(entity));
+    this.queries.dialog.added.forEach((entity) => {
+      this.loadStory(entity);
+    });
+    
     // When the user picks a choice, continue the story!
     this.queries.pickedChoice.added.forEach((entity) => this.pickChoice(entity));
   }
@@ -140,4 +144,7 @@ DialogSystem.queries = {
   player: {
     components: [Player],
   },
+  windowsDialog: {
+    components: [WindowDialog],
+  }
 };

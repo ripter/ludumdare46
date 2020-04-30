@@ -31,7 +31,7 @@
       <stop style="stop-color: rgb(38, 95, 181);"/>
     </linearGradient>
   </defs>
-  <g transform="matrix(0.522402, 0, 0, 0.522402, 404.787201, 219.504837)" style="">
+  <g transform="matrix(0.522402, 0, 0, 0.522402, 404.787201, 219.504837)" style="pointer-events: none;">
     <title>legend</title>
     <rect x="-57.259" y="87.199" width="51" height="30" rx="6.5" fill="#FFF7CE" stroke="#C4AC32" stroke-width="3">
       <title>Entity</title>
@@ -48,38 +48,8 @@
     <title>Window System</title>
     <rect x="103.624" y="172.76" width="833.229" height="362.733" rx="12" ry="12" style="fill: url(#color-3); stroke: url(#color-2); stroke-width: 3px;"/>
     <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="442.224" y="164.945">Window System</text>
-    <g transform="matrix(1, 0, 0, 1, 71.30442, 144.766785)">
+    <g transform="matrix(1, 0, 0, 1, 71.30442, 144.766785)" style="visibility: hidden;">
       <title>Dialog Added Flow</title>
-      <g transform="matrix(1, 0, 0, 1, 75.751556, -94.078308)">
-        <title>entity</title>
-        <rect x="181.679" y="158.237" width="132.07" height="116.489" rx="12" ry="12" style="fill: url(#color-0); stroke: url(#color-1); stroke-width: 3px;"/>
-        <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="211.735" y="148.032">entity</text>
-      </g>
-      <g>
-        <title>Dialog Added</title>
-        <path d="M 147.227 108.335 H 237.212 L 237.212 101.335 L 256.212 108.835 L 237.212 116.335 L 237.212 109.335 H 147.227 V 108.335 Z" style="" bx:shape="arrow 147.227 101.335 108.985 15 1 19 0 1@7b19ba81"/>
-        <text style="fill: rgb(51, 51, 51); font-family: &quot;Open Sans&quot;; font-size: 12px; white-space: pre;" x="183.525" y="104.892">Added</text>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, -280.234009, -132.07431)">
-        <title>Dialog Component</title>
-        <rect x="339.988" y="224.609" width="96.199" height="34" rx="12" ry="12" style="fill: url(#color-5); stroke: url(#color-4); stroke-width: 3px;"/>
-        <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="352.107" y="245.893">Dialog</text>
-      </g>
-      <g transform="matrix(1, 0, 0, 1, 126.849762, -90.516296)">
-        <title>focusedWindows Entities</title>
-        <rect x="345.551" y="154.675" width="132.07" height="116.489" rx="12" ry="12" style="fill: url(#color-0); stroke: url(#color-1); stroke-width: 3px;"/>
-        <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="327.647" y="143.457">focusedWindows</text>
-        <g transform="matrix(1, 0, 0, 1, 23.498489, -55.517406)">
-          <title>Window Component</title>
-          <rect x="339.988" y="224.609" width="96.199" height="34" rx="12" ry="12" style="fill: url(#color-5); stroke: url(#color-4); stroke-width: 3px;"/>
-          <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="352.113" y="247.722">Window</text>
-        </g>
-        <g transform="matrix(1, 0, 0, 1, 23.498489, -1.86159)">
-          <title>Focus Component</title>
-          <rect x="339.988" y="224.609" width="96.199" height="34" rx="12" ry="12" style="fill: url(#color-5); stroke: url(#color-4); stroke-width: 3px;"/>
-          <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="358.107" y="245.893">Focus</text>
-        </g>
-      </g>
       <g transform="matrix(1.055995, 0, 0, 1, 432.663757, 40.570232)" style="">
         <title>Focus moved</title>
         <path d="M 147.227 108.335 H 237.212 L 237.212 101.335 L 256.212 108.835 L 237.212 116.335 L 237.212 109.335 H 147.227 V 108.335 Z" style="" bx:shape="arrow 147.227 101.335 108.985 15 1 19 0 1@7b19ba81"/>
@@ -97,23 +67,8 @@
         </g>
       </g>
     </g>
-    <g transform="matrix(1, 0, 0, 1, 65.710518, 329.437195)">
+    <g transform="matrix(1, 0, 0, 1, 65.710518, 329.437195)" style="visibility: hidden;">
       <title>Dialog Removed Flow</title>
-      <g transform="matrix(1, 0, 0, 1, -129.506912, -102.430481)">
-        <title>entity</title>
-        <rect x="181.679" y="158.237" width="132.07" height="116.489" rx="12" ry="12" style="fill: url(#color-0); stroke: url(#color-1); stroke-width: 3px;"/>
-        <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="211.735" y="148.032">entity</text>
-        <g transform="matrix(1, 0, 0, 1, -145.133194, -51.292095)">
-          <title>Dialog Component</title>
-          <rect x="339.988" y="224.609" width="96.199" height="34" rx="12" ry="12" style="fill: url(#color-5); stroke: url(#color-4); stroke-width: 3px;"/>
-          <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="352.107" y="245.893">Dialog</text>
-        </g>
-      </g>
-      <g transform="matrix(0.902267, 0, 0, 1, 30.634373, -20.303495)" style="">
-        <title>Dialog Removed</title>
-        <path d="M 147.227 108.335 H 237.212 L 237.212 101.335 L 256.212 108.835 L 237.212 116.335 L 237.212 109.335 H 147.227 V 108.335 Z" style="" bx:shape="arrow 147.227 101.335 108.985 15 1 19 0 1@7b19ba81"/>
-        <text style="fill: rgb(51, 51, 51); font-family: &quot;Open Sans&quot;; font-size: 12px; white-space: pre;" x="175.393" y="104.892">Removed</text>
-      </g>
       <g transform="matrix(1, 0, 0, 1, 126.849762, -90.516296)">
         <title>focusedWindows Entities</title>
         <rect x="345.551" y="154.675" width="132.07" height="116.489" rx="12" ry="12" style="fill: url(#color-0); stroke: url(#color-1); stroke-width: 3px;"/>
@@ -146,6 +101,53 @@
         </g>
       </g>
     </g>
-    <line style="stroke: rgb(0, 0, 0); fill: none; stroke-dasharray: 1px, 4px;" x1="106.032" y1="342.489" x2="936.137" y2="342.489"/>
+    <line style="stroke: rgb(0, 0, 0); fill: none; stroke-dasharray: 1px, 4px; visibility: hidden;" x1="106.032" y1="342.489" x2="936.137" y2="342.489"/>
   </g>
+  <g transform="matrix(0.585134, 0, 0, 0.585134, -176.692047, -48.055286)" style="">
+    <title>windowsMapFocused</title>
+    <rect x="345.551" y="154.675" width="208.499" height="187.991" rx="12" ry="12" style="fill: url(#color-0); stroke: url(#color-1); stroke-width: 3px;"/>
+    <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="347.917" y="143.457">windowsMapFocused</text>
+    <g transform="matrix(1, 0, 0, 1, 23.498489, -55.517406)">
+      <title>Window Component</title>
+      <rect x="339.988" y="224.609" width="170.901" height="42.725" rx="12" ry="12" style="fill: url(#color-5); stroke: url(#color-4); stroke-width: 3px;"/>
+      <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="389.459" y="250.314">Window</text>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 23.780819, 53.911713)" style="">
+      <title>Focus Component</title>
+      <rect x="340.205" y="224.556" width="170.901" height="42.725" rx="12" ry="12" style="fill: url(#color-5); stroke: url(#color-4); fill-opacity: 0.5; stroke-opacity: 0.5; stroke-width: 5.12703px; stroke-dasharray: 4, 2, 4, 2, 4, 2;"/>
+      <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="395.673" y="250.264">Focus</text>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 23.498489, -0.804349)">
+      <title>WindowMap Component</title>
+      <rect x="339.988" y="224.584" width="170.901" height="42.725" rx="12" ry="12" style="fill: url(#color-5); stroke: url(#color-4); stroke-width: 3px;"/>
+      <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="371.522" y="250.29">WindowMap</text>
+    </g>
+  </g>
+  <g transform="matrix(0.585134, 0, 0, 0.585134, 108.299538, -45.325256)">
+    <title>windowsDialogFocused</title>
+    <rect x="345.551" y="154.675" width="208.499" height="187.991" rx="12" ry="12" style="fill: url(#color-0); stroke: url(#color-1); stroke-width: 3px;"/>
+    <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="329.721" y="143.457">windowsDialogFocused</text>
+    <g transform="matrix(1, 0, 0, 1, 23.950823, -55.517406)">
+      <title>Window Component</title>
+      <rect x="339.988" y="224.609" width="170.901" height="42.725" rx="12" ry="12" style="fill: url(#color-5); stroke: url(#color-4); stroke-width: 3px;"/>
+      <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="389.459" y="250.314">Window</text>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 24.233152, 53.858719)" style="">
+      <title>Focus Component</title>
+      <rect x="340.105" y="224.609" width="170.901" height="42.725" rx="12" ry="12" style="fill: url(#color-5); stroke: url(#color-4); stroke-width: 3px;"/>
+      <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="395.574" y="250.313">Focus</text>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 23.950823, -0.829343)">
+      <title>WindowDialog Component</title>
+      <rect x="339.988" y="224.609" width="170.901" height="42.725" rx="12" ry="12" style="fill: url(#color-5); stroke: url(#color-4); stroke-width: 3px;"/>
+      <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="353.529" y="250.314">WindowDialog</text>
+    </g>
+  </g>
+  <g transform="matrix(0.585134, 0, 0, 0.585134, -28.956245, -13.779686)" style="visibility: hidden;">
+    <title>Focus Component</title>
+    <rect x="340.205" y="224.556" width="170.901" height="42.725" rx="12" ry="12" style="fill: url(#color-5); stroke: url(#color-4); stroke-width: 3px;"/>
+    <text style="fill: rgb(51, 51, 51); font-family: &quot;Courier Prime&quot;; font-size: 20px; white-space: pre;" x="395.673" y="250.264">Focus</text>
+  </g>
+  <path d="M 147.486 129.111 H 290.777 L 290.777 122.111 L 309.777 129.611 L 290.777 137.111 L 290.777 130.111 H 147.486 V 129.111 Z" style="" bx:shape="arrow 147.486 122.111 162.291 15 1 19 0 1@8842a1fb"/>
+  <text style="fill: rgb(51, 51, 51); font-family: &quot;Open Sans&quot;; font-size: 16px; white-space: pre;" x="179.612" y="127.772">Focus Moved</text>
 </svg>

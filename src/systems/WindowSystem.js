@@ -1,96 +1,74 @@
 import { System } from 'ecsy';
 
 import { Dialog } from '../components/Dialog';
-import { Focus, Sprite } from '../components/singleValue';
-import { Input } from '../components/Input';
-import { pixi } from '../singletons/pixi';
 import { Window } from '../components/Window';
+import { WindowMap, WindowDialog, Focus, Sprite } from '../components/singleValue';
 
-// Manages the active "window"
-// Enables/disables systems as the Focused window is updated.
 export class WindowSystem extends System {
   execute() {
-    const { windows, dialog } = this.queries;
+    const { dialogs, windowsDialog, windowsMap } = this.queries;
+    const isDialogActive = this.isDialogActive();
+    const hasDialogs = dialogs.results.length > 0;
 
-    // When a window is added, add it to the PIXI Stage
-    windows.added.forEach((entity) => {
-      const sprite = entity.getComponent(Sprite).value;
-      pixi.stage.addChild(sprite);
-      // When window is added, stop it's systems.
-      this.toggleSystems(entity, 'stop');
-    });
-    // When a window is removed, remove it from the PIXI Stage
-    windows.removed.forEach((entity) => {
-      const sprite = entity.getComponent(Sprite).value;
-      pixi.stage.removeChild(sprite);
-    });
-
-    // Switch Focus when the Popup is added/removed.
-    const dialogWindow = this.findWindowByName('dialog');
-    const dialogContainer = dialogWindow.getComponent(Sprite).value;
-
-    if (dialog.added.length > 0) {
-      console.log('dialog added', dialog.added[0]);
-      this.setFocusOnWindow(dialogWindow);
-      dialogContainer.visible = true;
+    // if there is a dialog, then make sure the dialog window is open.
+    if (hasDialogs && !isDialogActive) {
+      this.disableWindow(windowsMap.results[0]);
+      this.enableWindow(windowsDialog.results[0]);
     }
-    else if (dialog.removed.length > 0) {
-      console.log('dialog removed', dialog.removed[0]);
-      this.setFocusOnWindow(this.findWindowByName('map'));
-      dialogContainer.visible = false;
+    // if there is no dialog, then make sure the dialog window is closed.
+    else if (!hasDialogs && isDialogActive) {
+      this.disableWindow(windowsDialog.results[0]);
+      this.enableWindow(windowsMap.results[0]);
     }
   }
 
-  findWindowByName(name) {
-    return this.queries.windows.results.find((entity) => entity.getComponent(Window).name === name);
+  // returns true when the WindowDialog has Focus
+  isDialogActive() {
+    if (this.queries.windowsDialog.results.length === 0) return false;
+    return this.queries.windowsDialog.results[0].hasComponent(Focus);
   }
 
-  setFocusOnWindow(windowEntity) {
-    // Remove Focus
-    this.queries.focusedWindows.results.forEach((entity) => {
-      // skip if the new window is the old window.
-      if (entity === windowEntity) { return; }
-      entity.removeComponent(Focus);
-      this.toggleSystems(entity, 'stop');
-    });
+  // Enables the window
+  enableWindow(entity) {
+    const { systems, toggleVisibility } = entity.getComponent(Window);
+    const sprite = entity.getComponent(Sprite).value;
 
-    // Add Focus to the new window
-    windowEntity.addComponent(Focus, {});
-    this.toggleSystems(windowEntity, 'play');
+    this.toggleSystems(systems, 'play');
+    if (toggleVisibility) {
+      sprite.visible = true;
+    }
+    entity.addComponent(Focus);
   }
 
-  // Toggles all the systems
-  toggleSystems(entity, method) {
-    const { systems } = entity.getComponent(Window);
-    systems.forEach((systemType) => {
+  // Disables the window
+  disableWindow(entity) {
+    const { systems, toggleVisibility } = entity.getComponent(Window);
+    const sprite = entity.getComponent(Sprite).value;
+
+    this.toggleSystems(systems, 'stop');
+    if (toggleVisibility) {
+      sprite.visible = false;
+    }
+    entity.removeComponent(Focus);
+  }
+
+  // Toggles the systems by calling method on all of them.
+  toggleSystems(systemList, method) {
+    systemList.forEach((systemType) => {
       const system = this.world.getSystem(systemType);
       system[method]();
     });
   }
 }
+
 WindowSystem.queries = {
-  windows: {
-    components: [Window],
-    listen: {
-      added: true,
-      removed: true,
-    },
-  },
-  focusedWindows: {
-    components: [Window, Focus],
-    listen: {
-      added: true,
-      removed: true,
-    },
-  },
-  dialog: {
+  dialogs: {
     components: [Dialog],
-    listen: {
-      added: true,
-      removed: true,
-    },
   },
-  input: {
-    components: [Input],
+  windowsDialog: {
+    components: [WindowDialog],
+  },
+  windowsMap: {
+    components: [WindowMap,]
   },
 };

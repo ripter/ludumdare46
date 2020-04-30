@@ -2,7 +2,7 @@ import { createMobEntity } from './entities/createMobEntity';
 import { Dialog } from './components/Dialog';
 import { DialogInputSystem } from './systems/DialogInputSystem';
 import {
-  DialogWindow, Focus, FollowPlayer, Player, Sprite,
+  WindowDialog, Focus, FollowPlayer, Player, Sprite, WindowMap,
 } from './components/singleValue';
 import { Input } from './components/Input';
 import { loadDialogMap } from './utils/loadDialogMap';
@@ -25,30 +25,34 @@ export function startGame() {
   world.createEntity()
     .addComponent(Input, {});
 
-  // Create the Window for the game world.
+  //
+  //  Window Map
+  const mapSprite = loadTiledMap(tileSet, resources.world_map.data);
+  pixi.stage.addChild(mapSprite);
   const windowMap = world.createEntity()
     .addComponent(Window, {
-      name: 'map',
       systems: [MapInputSystem],
+      toggleVisibility: false,
     })
+    .addComponent(WindowMap)
     .addComponent(FollowPlayer)
-    .addComponent(Sprite, {
-      value: loadTiledMap(tileSet, resources.world_map.data),
-    });
+    .addComponent(Sprite, {value: mapSprite});
 
+  //
+  // Window Dialog
+  const dialogSprite = loadDialogMap(uiSet, resources.ui_map.data, resources.ui_choices_map.data);
+  pixi.stage.addChild(dialogSprite);
   world.createEntity()
     .addComponent(Window, {
-      name: 'dialog',
       systems: [DialogInputSystem],
+      toggleVisibility: true,
     })
-    .addComponent(DialogWindow, {})
-    .addComponent(Sprite, {
-      value: loadDialogMap(uiSet, resources.ui_map.data, resources.ui_choices_map.data),
-    })
-    .addComponent(Focus, {});
+    .addComponent(WindowDialog)
+    .addComponent(Sprite, {value: dialogSprite})
+    .addComponent(Focus);
 
-  // TODO: Spawn player from the TiledMap data
-  const mapSprite = windowMap.getComponent(Sprite).value;
+
+  //
   // Create the Player Mob
   createMobEntity({
     name: 'Chris',

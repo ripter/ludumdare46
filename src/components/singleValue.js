@@ -20,11 +20,8 @@ class SingleValueComponent extends Component {
 export class Collider extends SingleValueComponent {}
 export class Cursor extends SingleValueComponent {}
 export class DialogOptionPicked extends SingleValueComponent {}
-export class DialogWindow extends SingleValueComponent {}
-export class Focus extends SingleValueComponent {}
 export class FollowPlayer extends SingleValueComponent {}
 export class HasDialog extends SingleValueComponent {}
-export class MapWindow extends SingleValueComponent {}
 export class Player extends SingleValueComponent {}
 export class Rect extends SingleValueComponent {}
 export class Slot extends SingleValueComponent {}
@@ -32,3 +29,8 @@ export class Sprite extends SingleValueComponent {}
 export class Text extends SingleValueComponent {}
 export class OneTimeDialog extends SingleValueComponent {}
 export class HasAlternateDialog extends SingleValueComponent {}
+
+
+export class Focus extends SingleValueComponent {}
+export class WindowMap extends SingleValueComponent {}
+export class WindowDialog extends SingleValueComponent {}

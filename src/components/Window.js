@@ -8,12 +8,12 @@ export class Window extends Component {
   }
 
   reset() {
-    this.name = '';
+    this.toggleVisibility = false;
     this.systems.length = 0;
   }
 
   set(obj) {
-    this.name = obj.name;
     this.systems = obj.systems;
+    this.toggleVisibility = obj.toggleVisibility;
   }
 }
