@@ -17,10 +17,10 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
-    "jest": "^25.1.0",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.10.3"
+    "jest": "^29.7.0",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
     "ecsy": "^0.2.3",
