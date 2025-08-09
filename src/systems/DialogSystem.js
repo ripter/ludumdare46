@@ -7,7 +7,6 @@ import {
 import { Dialog } from '../components/Dialog';
 import { pixi } from '../singletons/pixi';
 
-
 export class DialogSystem extends System {
   execute() {
     // Keep the cursor in the right slot.

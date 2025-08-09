@@ -1,4 +1,3 @@
-
 :root {
   --color-background: #111;
   --color-text: white;
@@ -11,5 +10,10 @@ body {
 
 
 #elCanvas {
-  width: 100%;
+  width: 90vw !important;
+  height: 90vh !important;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  background: black;
 }

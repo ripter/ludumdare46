@@ -90,7 +90,6 @@ export function loadTiledMap(textures, mapData) {
       });
     }
 
-
     // When the layer is just tile images, merge them into a single sprite.
     if (layer.type === 'tilelayer') {
       // Merge the tiles into a single Sprite

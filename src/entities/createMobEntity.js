@@ -7,7 +7,6 @@ import { Sprite, Collider } from '../components/singleValue';
 import { Velocity } from '../components/Velocity';
 import { world } from '../singletons/world';
 
-
 export function createMobEntity(settings) {
   const { spritesheet } = pixi.loader.resources.mobs;
   const {

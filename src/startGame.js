@@ -13,7 +13,6 @@ import { sliceTexture } from './utils/sliceTexture';
 import { Window } from './components/Window';
 import { world } from './singletons/world';
 
-
 export function startGame() {
   const { resources } = pixi.loader;
   // Tiled uses an index based system, so instead of using json sprite sheets, slice the image into an array
@@ -51,7 +50,6 @@ export function startGame() {
     .addComponent(Sprite, { value: dialogSprite })
     .addComponent(Focus);
 
-
   //
   // Create the Player Mob
   createMobEntity({
@@ -63,7 +61,6 @@ export function startGame() {
   })
     .addComponent(Player, {})
     .addComponent(Dialog, { resourceID: 'dialog_menu' });
-
 
   // Start the Game loop.
   // Use Pixi's ticker for the game loop.

@@ -8,12 +8,10 @@ import { Mob } from '../components/Mob';
 import { Velocity } from '../components/Velocity';
 import { velocityFromDirection } from '../utils/velocityFromDirection';
 
-
 function simpleMove(entity) {
   const velocity = entity.getMutableComponent(Velocity);
   const seed = 0 | Math.random() * 100;
   const isMove = seed % 7 === 0;
-
 
   if (isMove) {
     const direction = 0 | Math.random() * DIRECTION_LIST.length;
@@ -31,7 +29,6 @@ function crazySpin(entity) {
   };
   entity.getMutableComponent(Velocity).set(velocity);
 }
-
 
 export class AISystem extends System {
   execute(delta, time) {

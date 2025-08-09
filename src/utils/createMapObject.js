@@ -1,4 +1,3 @@
-
 // Converts Tiled Object into a mapObject we can use for game logic.
 export function createMapObject(obj) {
   const mapObject = {

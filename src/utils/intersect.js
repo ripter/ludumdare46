@@ -87,7 +87,6 @@ export function intersect(a, b) {
   // };
 }
 
-
 export function spriteToBBox(sprite) {
   return {
     minX: sprite.position.x,

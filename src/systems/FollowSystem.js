@@ -2,7 +2,6 @@ import { System } from 'ecsy';
 
 import { FollowPlayer, Sprite, Player } from '../components/singleValue';
 
-
 export class FollowSystem extends System {
   init() {
     this.player = null; // Quick reference

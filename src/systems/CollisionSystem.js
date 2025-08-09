@@ -12,7 +12,6 @@ function doesIntersect(collider, collidable) {
   return intersect(aBox, bBox);
 }
 
-
 export class CollisionSystem extends System {
   execute() {
     const collidables = this.queries.collidables.results;

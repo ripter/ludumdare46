@@ -30,7 +30,6 @@ export class Text extends SingleValueComponent {}
 export class OneTimeDialog extends SingleValueComponent {}
 export class HasAlternateDialog extends SingleValueComponent {}
 
-
 export class Focus extends SingleValueComponent {}
 export class WindowMap extends SingleValueComponent {}
 export class WindowDialog extends SingleValueComponent {}
